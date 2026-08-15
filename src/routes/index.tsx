@@ -318,15 +318,25 @@ function Index() {
         </Reveal>
         <div className="mt-12 grid gap-5 md:grid-cols-3">
           {[
-            "Prompt 1 — Tendências de cardápio e faixa de preço praticada no bairro.",
-            "Prompt 2 — Análise de concorrentes diretos e diferenciais de comunicação.",
-            "Prompt 3 — Plano de conteúdo de quatro semanas para redes sociais.",
-          ].map((caption, i) => (
-            <Reveal key={caption} delay={i * 120}>
-              <ScreenshotSlot caption={caption} />
+            {
+              src: prompt1,
+              caption: "Prompt 1 — Tendências de cardápio e faixa de preço praticada no bairro.",
+            },
+            {
+              src: prompt2,
+              caption: "Prompt 2 — Análise de concorrentes diretos e diferenciais de comunicação.",
+            },
+            {
+              src: prompt3,
+              caption: "Prompt 3 — Plano de conteúdo de quatro semanas para redes sociais.",
+            },
+          ].map((item, i) => (
+            <Reveal key={item.caption} delay={i * 120}>
+              <ScreenshotSlot caption={item.caption} defaultSrc={item.src} />
             </Reveal>
           ))}
         </div>
+
       </Slide>
 
       {/* 7. Caso real */}
