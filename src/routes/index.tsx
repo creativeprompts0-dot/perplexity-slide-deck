@@ -359,8 +359,8 @@ function Index() {
         </Reveal>
       </Slide>
 
-      {/* 7. Uso responsável */}
-      <Slide id="uso-responsavel" index="06" label="Uso responsável">
+      {/* 8. Uso responsável */}
+      <Slide id="uso-responsavel" index="07" label="Uso responsável">
         <Reveal>
           <div className="relative overflow-hidden rounded-3xl border border-destructive/40 bg-destructive/10 p-8 md:p-14">
             <AlertTriangle className="text-destructive" size={32} />
