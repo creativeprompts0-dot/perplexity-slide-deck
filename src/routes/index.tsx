@@ -82,6 +82,33 @@ const features = [
   },
 ];
 
+const founders = [
+  {
+    name: "Aravind Srinivas",
+    role: "Cofundador e CEO",
+    photo: founder1.url,
+    text: "Doutor em ciência da computação por Berkeley e ex-pesquisador da OpenAI, DeepMind e Google. É a voz pública da empresa e define o rumo do produto.",
+  },
+  {
+    name: "Denis Yarats",
+    role: "Cofundador e CTO",
+    photo: founder2.url,
+    text: "Ex-pesquisador de inteligência artificial da Meta (FAIR). Lidera a engenharia e a arquitetura do motor de busca e resposta.",
+  },
+  {
+    name: "Johnny Ho",
+    role: "Cofundador e Chief Strategy Officer",
+    photo: founder3.url,
+    text: "Ex-engenheiro do Quora e medalhista em competições de programação. Cuida da estratégia e do crescimento do produto.",
+  },
+  {
+    name: "Andy Konwinski",
+    role: "Cofundador",
+    photo: founder4.url,
+    text: "Cofundador da Databricks e pesquisador ligado a Berkeley. Traz a experiência de construir empresas de dados em larga escala.",
+  },
+];
+
 const niches = [
   {
     icon: UtensilsCrossed,
