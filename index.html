@@ -1,0 +1,1291 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Perplexity AI | IA aplicada a pequenos negócios</title>
+  <meta name="description" content="Apresentação sobre a Perplexity AI: como o motor de respostas pesquisa, cita fontes e apoia decisões de pequenos negócios locais." />
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet" />
+  
+  <style>
+    :root {
+      --bg: #0b0f17;
+      --card-bg: #141b26;
+      --card-border: rgba(255, 255, 255, 0.08);
+      --text: #f0f6fc;
+      --text-muted: #94a3b8;
+      --teal: #20b2aa;
+      --teal-light: #5eead4;
+      --violet: #a855f7;
+      --violet-light: #c084fc;
+      --gradient-brand: linear-gradient(135deg, #20b2aa 0%, #a855f7 100%);
+      --radius-xl: 1.25rem;
+      --radius-2xl: 1.75rem;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-snap-type: y mandatory;
+      font-family: "DM Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    h1, h2, h3, h4, .font-display {
+      font-family: "Space Grotesk", sans-serif;
+      letter-spacing: -0.03em;
+    }
+
+    /* Background meshes & grids */
+    .mesh-bg {
+      position: absolute;
+      inset: 0;
+      background-image:
+        radial-gradient(45% 50% at 15% 20%, rgba(32, 178, 170, 0.18), transparent 70%),
+        radial-gradient(40% 45% at 85% 15%, rgba(168, 85, 247, 0.18), transparent 70%),
+        radial-gradient(55% 55% at 65% 85%, rgba(32, 178, 170, 0.12), transparent 70%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .grid-bg {
+      position: absolute;
+      inset: 0;
+      background-image: 
+        linear-gradient(to right, rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+      background-size: 64px 64px;
+      mask-image: radial-gradient(70% 70% at 50% 50%, black, transparent 85%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .dots-bg {
+      position: absolute;
+      inset: 0;
+      background-image: radial-gradient(rgba(168, 85, 247, 0.25) 1.2px, transparent 1.2px);
+      background-size: 24px 24px;
+      mask-image: radial-gradient(60% 60% at 50% 50%, black, transparent 80%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .float-orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(80px);
+      pointer-events: none;
+      animation: float 12s ease-in-out infinite;
+      z-index: 0;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translate(0, 0) scale(1); }
+      50% { transform: translate(-20px, -25px) scale(1.08); }
+    }
+
+    /* Slides */
+    .slide {
+      position: relative;
+      min-height: 100vh;
+      width: 100%;
+      scroll-snap-align: start;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 5rem 1.5rem;
+      overflow: hidden;
+    }
+
+    @media (min-width: 768px) {
+      .slide {
+        padding: 5rem 4rem;
+      }
+    }
+
+    @media (min-width: 1024px) {
+      .slide {
+        padding: 5rem 6rem;
+      }
+    }
+
+    .slide-content {
+      position: relative;
+      z-index: 1;
+      max-width: 76rem;
+      width: 100%;
+      margin: 0 auto;
+    }
+
+    /* Typography utils */
+    .text-gradient {
+      background: var(--gradient-brand);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .slide-badge {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1.8rem;
+    }
+
+    .slide-number {
+      font-family: "Space Grotesk", sans-serif;
+      font-size: 0.95rem;
+      color: var(--teal);
+      font-weight: 600;
+    }
+
+    .slide-line {
+      height: 1px;
+      width: 2.5rem;
+      background: rgba(255, 255, 255, 0.15);
+    }
+
+    .slide-label {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.25em;
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+
+    /* Cards */
+    .card-elegant {
+      background: linear-gradient(160deg, rgba(20, 27, 38, 0.85) 0%, rgba(11, 15, 23, 0.95) 100%);
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius-2xl);
+      box-shadow: 0 20px 40px -20px rgba(0, 0, 0, 0.7);
+      backdrop-filter: blur(12px);
+      transition: transform 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease;
+    }
+
+    .card-elegant:hover {
+      transform: translateY(-4px);
+      border-color: rgba(32, 178, 170, 0.4);
+      box-shadow: 0 24px 50px -20px rgba(32, 178, 170, 0.2);
+    }
+
+    /* Grids */
+    .grid-3 {
+      display: grid;
+      gap: 1.5rem;
+      grid-template-columns: 1fr;
+    }
+
+    @media (min-width: 768px) {
+      .grid-3 {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    .grid-4 {
+      display: grid;
+      gap: 1.25rem;
+      grid-template-columns: 1fr;
+    }
+
+    @media (min-width: 640px) {
+      .grid-4 {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (min-width: 1024px) {
+      .grid-4 {
+        grid-template-columns: repeat(4, 1fr);
+      }
+    }
+
+    .grid-2 {
+      display: grid;
+      gap: 1.5rem;
+      grid-template-columns: 1fr;
+    }
+
+    @media (min-width: 768px) {
+      .grid-2 {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    /* Editable boxes */
+    [contenteditable="true"] {
+      outline: none;
+      border-radius: 0.5rem;
+      padding: 0.25rem 0.5rem;
+      transition: background 0.2s, box-shadow 0.2s;
+    }
+
+    [contenteditable="true"]:hover {
+      background: rgba(255, 255, 255, 0.04);
+    }
+
+    [contenteditable="true"]:focus {
+      background: rgba(255, 255, 255, 0.08);
+      box-shadow: 0 0 0 1px var(--teal);
+    }
+
+    /* Screenshot interactive card */
+    .screenshot-card {
+      position: relative;
+      cursor: pointer;
+      overflow: hidden;
+    }
+
+    .screenshot-container {
+      position: relative;
+      aspect-ratio: 16 / 10;
+      background: #0f141c;
+      border-bottom: 1px solid var(--card-border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .screenshot-container img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top;
+      transition: transform 0.5s ease;
+    }
+
+    .screenshot-card:hover .screenshot-container img {
+      transform: scale(1.04);
+    }
+
+    .zoom-overlay-hint {
+      position: absolute;
+      inset: 0;
+      background: rgba(11, 15, 23, 0.6);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      backdrop-filter: blur(4px);
+    }
+
+    .screenshot-card:hover .zoom-overlay-hint {
+      opacity: 1;
+    }
+
+    .zoom-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--gradient-brand);
+      color: #fff;
+      font-size: 0.8rem;
+      font-weight: 600;
+      padding: 0.4rem 0.9rem;
+      border-radius: 9999px;
+      box-shadow: 0 4px 15px rgba(32, 178, 170, 0.4);
+    }
+
+    /* Comparison table */
+    .comparison-table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0;
+      margin-top: 2rem;
+      border-radius: var(--radius-xl);
+      overflow: hidden;
+      border: 1px solid var(--card-border);
+    }
+
+    .comparison-table th, .comparison-table td {
+      padding: 1.1rem 1.25rem;
+      text-align: left;
+      border-bottom: 1px solid var(--card-border);
+      font-size: 0.92rem;
+    }
+
+    .comparison-table th {
+      background: rgba(255, 255, 255, 0.04);
+      font-family: "Space Grotesk", sans-serif;
+      font-weight: 600;
+      text-transform: uppercase;
+      font-size: 0.8rem;
+      letter-spacing: 0.1em;
+    }
+
+    .comparison-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    .comparison-table td:nth-child(2) {
+      color: #94a3b8;
+    }
+
+    .comparison-table td:nth-child(3) {
+      color: var(--teal-light);
+      font-weight: 500;
+      background: rgba(32, 178, 170, 0.04);
+    }
+
+    /* Lightbox Modal */
+    .lightbox-modal {
+      position: fixed;
+      inset: 0;
+      z-index: 999;
+      background: rgba(5, 8, 13, 0.92);
+      backdrop-filter: blur(16px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .lightbox-modal.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .lightbox-box {
+      position: relative;
+      max-width: 90vw;
+      max-height: 90vh;
+      background: #141b26;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: var(--radius-2xl);
+      overflow: hidden;
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.8);
+      display: flex;
+      flex-direction: column;
+      transform: scale(0.95);
+      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .lightbox-modal.active .lightbox-box {
+      transform: scale(1);
+    }
+
+    .lightbox-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1rem 1.5rem;
+      background: rgba(11, 15, 23, 0.95);
+      border-bottom: 1px solid var(--card-border);
+    }
+
+    .lightbox-title {
+      font-family: "Space Grotesk", sans-serif;
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: #fff;
+    }
+
+    .lightbox-close {
+      background: rgba(255, 255, 255, 0.1);
+      border: none;
+      color: #fff;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s;
+    }
+
+    .lightbox-close:hover {
+      background: rgba(255, 255, 255, 0.25);
+    }
+
+    .lightbox-body {
+      overflow-y: auto;
+      max-height: calc(90vh - 120px);
+      padding: 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #090d14;
+    }
+
+    .lightbox-body img {
+      max-width: 100%;
+      max-height: 75vh;
+      border-radius: 0.75rem;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+      object-fit: contain;
+    }
+
+    .lightbox-caption {
+      padding: 1rem 1.5rem;
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      background: #141b26;
+      border-top: 1px solid var(--card-border);
+      line-height: 1.5;
+    }
+
+    /* Navigation controls */
+    .nav-bar {
+      position: fixed;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      background: rgba(20, 27, 38, 0.88);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      backdrop-filter: blur(16px);
+      padding: 0.5rem 1rem;
+      border-radius: 9999px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    }
+
+    .nav-btn {
+      background: none;
+      border: none;
+      color: var(--text-muted);
+      cursor: pointer;
+      padding: 0.4rem;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s;
+    }
+
+    .nav-btn:hover {
+      color: var(--text);
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    .nav-dots {
+      display: flex;
+      gap: 0.4rem;
+    }
+
+    .nav-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.2);
+      cursor: pointer;
+      transition: all 0.3s;
+      text-decoration: none;
+    }
+
+    .nav-dot.active, .nav-dot:hover {
+      background: var(--teal);
+      transform: scale(1.25);
+    }
+
+    /* Icon SVGs */
+    .icon {
+      width: 1.5rem;
+      height: 1.5rem;
+      stroke-width: 2;
+      stroke: currentColor;
+      fill: none;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .icon-primary { color: var(--teal); }
+    .icon-accent { color: var(--violet); }
+    .icon-destructive { color: #f87171; }
+  </style>
+</head>
+<body>
+
+  <!-- Floating Navigation -->
+  <div class="nav-bar">
+    <button class="nav-btn" onclick="prevSlide()" title="Slide Anterior (←)">
+      <svg class="icon" viewBox="0 0 24 24"><path d="m15 18-6-6 6-6"/></svg>
+    </button>
+    <div class="nav-dots" id="navDots">
+      <a href="#hero" class="nav-dot active" title="Início"></a>
+      <a href="#o-que-e" class="nav-dot" title="01. O que é"></a>
+      <a href="#como-ajuda-negocios" class="nav-dot" title="02. Como Ajuda"></a>
+      <a href="#sobre" class="nav-dot" title="03. Sobre"></a>
+      <a href="#fundadores" class="nav-dot" title="04. Quem criou"></a>
+      <a href="#recursos" class="nav-dot" title="05. Recursos"></a>
+      <a href="#nichos" class="nav-dot" title="06. Nichos"></a>
+      <a href="#demonstracao" class="nav-dot" title="07. Demonstração"></a>
+      <a href="#caso" class="nav-dot" title="08. Caso Real"></a>
+      <a href="#uso-responsavel" class="nav-dot" title="09. Uso Responsável"></a>
+      <a href="#encerramento" class="nav-dot" title="Encerramento"></a>
+    </div>
+    <button class="nav-btn" onclick="nextSlide()" title="Próximo Slide (→ / Espaço)">
+      <svg class="icon" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg>
+    </button>
+  </div>
+
+  <!-- Lightbox Modal for Zooming Screenshots -->
+  <div class="lightbox-modal" id="lightboxModal" onclick="closeLightbox(event)">
+    <div class="lightbox-box" id="lightboxBox" onclick="event.stopPropagation()">
+      <div class="lightbox-header">
+        <div class="lightbox-title" id="lightboxTitle">Exemplo do Prompt em Alta Resolução</div>
+        <button class="lightbox-close" onclick="closeLightboxDirect()" title="Fechar (ESC)">
+          <svg class="icon" viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+      </div>
+      <div class="lightbox-body">
+        <img id="lightboxImg" src="" alt="Exemplo ampliado" />
+      </div>
+      <div class="lightbox-caption" id="lightboxCaption">
+        Legenda detalhada do prompt e resposta gerada pela IA.
+      </div>
+    </div>
+  </div>
+
+  <!-- 1. Hero Slide -->
+  <section class="slide" id="hero">
+    <div class="mesh-bg"></div>
+    <div class="dots-bg"></div>
+    <div class="float-orb" style="top: 20%; left: -5%; width: 380px; height: 380px; background: rgba(32, 178, 170, 0.2);"></div>
+    
+    <div class="slide-content">
+      <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 2.5rem;">
+        <div style="width: 48px; height: 48px; border-radius: 12px; background: #fff; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 12px rgba(0,0,0,0.5);">
+          <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2.5"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+        </div>
+        <span style="font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.32em; color: var(--text-muted); font-weight: 600;">
+          IA APLICADA A PEQUENOS NEGÓCIOS
+        </span>
+      </div>
+
+      <h1 class="text-gradient" style="font-size: clamp(3.5rem, 8vw, 6.5rem); font-weight: 700; line-height: 0.95; max-width: 50rem;">
+        Perplexity AI
+      </h1>
+
+      <p style="margin-top: 2rem; font-size: clamp(1.2rem, 2.5vw, 1.8rem); line-height: 1.5; color: var(--text-muted); max-width: 42rem;">
+        O motor de respostas que pesquisa, cita e decide com você.
+      </p>
+
+      <div style="margin-top: 3.5rem; display: flex; align-items: center; gap: 0.75rem; font-size: 0.9rem; color: var(--text-muted);">
+        <span style="display: inline-block; width: 2px; height: 28px; background: linear-gradient(to bottom, var(--teal), transparent);"></span>
+        Role ou use as setas do teclado para navegar na apresentação
+      </div>
+    </div>
+  </section>
+
+  <!-- 2. O que é -->
+  <section class="slide" id="o-que-e">
+    <div class="grid-bg"></div>
+    <div class="float-orb" style="top: 10%; right: -5%; width: 320px; height: 320px; background: rgba(168, 85, 247, 0.15);"></div>
+    
+    <div class="slide-content">
+      <div class="slide-badge">
+        <span class="slide-number">01</span>
+        <span class="slide-line"></span>
+        <span class="slide-label">O que é</span>
+      </div>
+
+      <h2 style="font-size: clamp(2rem, 4.5vw, 3.8rem); font-weight: 700; max-width: 48rem; line-height: 1.15;">
+        Não é um chat que adivinha. É uma busca que <span class="text-gradient">responde</span>.
+      </h2>
+
+      <p style="margin-top: 1.5rem; font-size: 1.15rem; color: var(--text-muted); max-width: 45rem; line-height: 1.6;">
+        A cada pergunta, a Perplexity consulta a web ao vivo, lê as páginas encontradas e escreve uma resposta direta com os números da citação apontando exatamente de onde cada afirmação veio.
+      </p>
+
+      <div class="grid-3" style="margin-top: 3rem;">
+        <div class="card-elegant" style="padding: 2rem;">
+          <svg class="icon icon-primary" style="width: 2rem; height: 2rem;" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+          <h3 style="margin-top: 1.25rem; font-size: 1.25rem; font-weight: 600;">Pergunta em linguagem natural</h3>
+          <p style="margin-top: 0.75rem; font-size: 0.9rem; color: var(--text-muted); line-height: 1.6;">
+            Você descreve o problema do seu negócio como falaria com um consultor.
+          </p>
+        </div>
+
+        <div class="card-elegant" style="padding: 2rem;">
+          <svg class="icon icon-primary" style="width: 2rem; height: 2rem;" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20M2 12h20"/></svg>
+          <h3 style="margin-top: 1.25rem; font-size: 1.25rem; font-weight: 600;">Busca na web ao vivo</h3>
+          <p style="margin-top: 0.75rem; font-size: 0.9rem; color: var(--text-muted); line-height: 1.6;">
+            O sistema seleciona e lê fontes atuais em vez de depender apenas de memória de treino.
+          </p>
+        </div>
+
+        <div class="card-elegant" style="padding: 2rem;">
+          <svg class="icon icon-primary" style="width: 2rem; height: 2rem;" viewBox="0 0 24 24"><path d="M3 21c3 0 7-1 7-8V5c0-1.25-.75-2-2-2H4c-1.25 0-2 .75-2 2v6c0 1.25.75 2 2 2h4c0 4-2 6-5 6v2zM15 21c3 0 7-1 7-8V5c0-1.25-.75-2-2-2h-4c-1.25 0-2 .75-2 2v6c0 1.25.75 2 2 2h4c0 4-2 6-5 6v2z"/></svg>
+          <h3 style="margin-top: 1.25rem; font-size: 1.25rem; font-weight: 600;">Resposta com citações</h3>
+          <p style="margin-top: 0.75rem; font-size: 0.9rem; color: var(--text-muted); line-height: 1.6;">
+            Cada trecho traz a referência clicável, permitindo verificar antes de decidir.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- NOVO SLIDE: Como a Perplexity pode ajudar no dia a dia -->
+  <section class="slide" id="como-ajuda-negocios">
+    <div class="mesh-bg"></div>
+    <div class="float-orb" style="bottom: 10%; left: -5%; width: 350px; height: 350px; background: rgba(32, 178, 170, 0.16);"></div>
+    
+    <div class="slide-content">
+      <div class="slide-badge">
+        <span class="slide-number">02</span>
+        <span class="slide-line"></span>
+        <span class="slide-label">Impacto Prático</span>
+      </div>
+
+      <h2 style="font-size: clamp(2rem, 4.5vw, 3.8rem); font-weight: 700; max-width: 52rem; line-height: 1.15;">
+        Como a Perplexity <span class="text-gradient">transforma</span> a rotina de um pequeno negócio
+      </h2>
+
+      <p style="margin-top: 1rem; font-size: 1.1rem; color: var(--text-muted); max-width: 48rem; line-height: 1.6;">
+        O pequeno empreendedor costuma ser o gestor, o comprador e o profissional de marketing. A Perplexity atua como um braço direito estratégico para acelerar decisões diárias.
+      </p>
+
+      <div class="grid-4" style="margin-top: 2.5rem;">
+        <div class="card-elegant" style="padding: 1.75rem;">
+          <div style="width: 40px; height: 40px; border-radius: 10px; background: rgba(32, 178, 170, 0.15); display: flex; align-items: center; justify-content: center; margin-bottom: 1rem;">
+            <svg class="icon icon-primary" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          </div>
+          <h3 style="font-size: 1.15rem; font-weight: 600;">Economia de Tempo</h3>
+          <p style="margin-top: 0.5rem; font-size: 0.85rem; color: var(--text-muted); line-height: 1.5;">
+            Em vez de abrir 20 abas no Google e ler fóruns por horas, você obtém uma síntese estruturada e pronta em 30 segundos.
+          </p>
+        </div>
+
+        <div class="card-elegant" style="padding: 1.75rem;">
+          <div style="width: 40px; height: 40px; border-radius: 10px; background: rgba(168, 85, 247, 0.15); display: flex; align-items: center; justify-content: center; margin-bottom: 1rem;">
+            <svg class="icon icon-accent" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          </div>
+          <h3 style="font-size: 1.15rem; font-weight: 600;">Fontes Confiáveis</h3>
+          <p style="margin-top: 0.5rem; font-size: 0.85rem; color: var(--text-muted); line-height: 1.5;">
+            Diferente de IAs que inventam dados (alucinação), a Perplexity linka diretamente portais, notícias e sites oficiais para você validar.
+          </p>
+        </div>
+
+        <div class="card-elegant" style="padding: 1.75rem;">
+          <div style="width: 40px; height: 40px; border-radius: 10px; background: rgba(32, 178, 170, 0.15); display: flex; align-items: center; justify-content: center; margin-bottom: 1rem;">
+            <svg class="icon icon-primary" viewBox="0 0 24 24"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+          </div>
+          <h3 style="font-size: 1.15rem; font-weight: 600;">Cotação & Fornecedores</h3>
+          <p style="margin-top: 0.5rem; font-size: 0.85rem; color: var(--text-muted); line-height: 1.5;">
+            Descubra distribuidores atacadistas, variações de preço de insumos e matérias-primas na sua microrregião.
+          </p>
+        </div>
+
+        <div class="card-elegant" style="padding: 1.75rem;">
+          <div style="width: 40px; height: 40px; border-radius: 10px; background: rgba(168, 85, 247, 0.15); display: flex; align-items: center; justify-content: center; margin-bottom: 1rem;">
+            <svg class="icon icon-accent" viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+          </div>
+          <h3 style="font-size: 1.15rem; font-weight: 600;">Marketing Contextual</h3>
+          <p style="margin-top: 0.5rem; font-size: 0.85rem; color: var(--text-muted); line-height: 1.5;">
+            Crie copys para WhatsApp, legendas para Instagram e temas para datas comemorativas conectados com as tendências do momento.
+          </p>
+        </div>
+      </div>
+
+      <!-- Tabela comparativa -->
+      <table class="comparison-table">
+        <thead>
+          <tr>
+            <th>Cenário do Pequeno Negócio</th>
+            <th>Busca Tradicional no Google</th>
+            <th>Perplexity AI</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Pesquisar preço da concorrência</strong></td>
+            <td>Abrir 15 links, desviar de anúncios e montar tabela manual</td>
+            <td>Tabela comparativa estruturada com links diretos dos cardápios e lojas</td>
+          </tr>
+          <tr>
+            <td><strong>Montar calendário de postagens</strong></td>
+            <td>Modelos genéricos e desatualizados da internet</td>
+            <td>Plano personalizado para o seu bairro e nicho com base em tendências ao vivo</td>
+          </tr>
+          <tr>
+            <td><strong>Tirar dúvida fiscal ou de alvará</strong></td>
+            <td>Artigos longos e desatualizados em blogs jurídicos</td>
+            <td>Resumo das normas vigentes na prefeitura/estado com link da legislação</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- 3. Sobre a Perplexity -->
+  <section class="slide" id="sobre">
+    <div class="mesh-bg"></div>
+    
+    <div class="slide-content">
+      <div class="slide-badge">
+        <span class="slide-number">03</span>
+        <span class="slide-line"></span>
+        <span class="slide-label">Sobre a Perplexity</span>
+      </div>
+
+      <h2 style="font-size: clamp(2rem, 4.5vw, 3.8rem); font-weight: 700; max-width: 52rem; line-height: 1.15;">
+        De startup de San Francisco ao <span class="text-gradient">motor de respostas</span> do mundo
+      </h2>
+
+      <p style="margin-top: 1.5rem; font-size: 1.15rem; color: var(--text-muted); max-width: 45rem; line-height: 1.6;">
+        A Perplexity AI foi fundada em 2022 por Aravind Srinivas, Denis Yarats, Johnny Ho e Andy Konwinski, com sede em São Francisco, Califórnia. A ideia era simples: em vez de entregar uma lista de links, a IA deveria ler as fontes e responder diretamente, citando cada informação.
+      </p>
+
+      <div class="grid-4" style="margin-top: 3rem;">
+        <div class="card-elegant" style="padding: 1.75rem;">
+          <svg class="icon icon-primary" viewBox="0 0 24 24"><rect width="18" height="18" x="3" y="4" rx="2" ry="2"/><line x1="16" x2="16" y1="2" y2="6"/><line x1="8" x2="8" y1="2" y2="6"/><line x1="3" x2="21" y1="10" y2="10"/></svg>
+          <h3 style="margin-top: 1.25rem; font-size: 1.15rem; font-weight: 600;">Fundação</h3>
+          <p style="margin-top: 0.75rem; font-size: 0.85rem; color: var(--text-muted); line-height: 1.6;">
+            Lançada em 2022, a empresa cresceu rapidamente ao propor uma interface de busca conversacional com fontes visíveis.
+          </p>
+        </div>
+
+        <div class="card-elegant" style="padding: 1.75rem;">
+          <svg class="icon icon-primary" viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          <h3 style="margin-top: 1.25rem; font-size: 1.15rem; font-weight: 600;">Fundadores</h3>
+          <p style="margin-top: 0.75rem; font-size: 0.85rem; color: var(--text-muted); line-height: 1.6;">
+            Aravind Srinivas (CEO), Denis Yarats, Johnny Ho e Andy Konwinski — ex-pesquisadores de Google, OpenAI e Meta.
+          </p>
+        </div>
+
+        <div class="card-elegant" style="padding: 1.75rem;">
+          <svg class="icon icon-primary" viewBox="0 0 24 24"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/><path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/></svg>
+          <h3 style="margin-top: 1.25rem; font-size: 1.15rem; font-weight: 600;">Modelo de negócio</h3>
+          <p style="margin-top: 0.75rem; font-size: 0.85rem; color: var(--text-muted); line-height: 1.6;">
+            Freemium: uso gratuito com limites, e plano Pro que desbloqueia buscas avançadas, Deep Research e seleção de modelos.
+          </p>
+        </div>
+
+        <div class="card-elegant" style="padding: 1.75rem;">
+          <svg class="icon icon-primary" viewBox="0 0 24 24"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg>
+          <h3 style="margin-top: 1.25rem; font-size: 1.15rem; font-weight: 600;">Trajetória</h3>
+          <p style="margin-top: 0.75rem; font-size: 0.85rem; color: var(--text-muted); line-height: 1.6;">
+            Passou de ferramenta de nicho a uma das principais alternativas de busca com IA, com parcerias e expansão contínua.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. Fundadores -->
+  <section class="slide" id="fundadores">
+    <div class="grid-bg"></div>
+    
+    <div class="slide-content">
+      <div class="slide-badge">
+        <span class="slide-number">04</span>
+        <span class="slide-line"></span>
+        <span class="slide-label">Quem criou</span>
+      </div>
+
+      <h2 style="font-size: clamp(2rem, 4.5vw, 3.8rem); font-weight: 700; max-width: 52rem; line-height: 1.15;">
+        As quatro pessoas por trás da <span class="text-gradient">Perplexity</span>
+      </h2>
+
+      <p style="margin-top: 1rem; font-size: 1.15rem; color: var(--text-muted); max-width: 45rem; line-height: 1.6;">
+        Um time de pesquisadores e engenheiros de IA que se conheceu entre laboratórios de ponta e decidiu reinventar a busca.
+      </p>
+
+      <div class="grid-4" style="margin-top: 2.5rem;">
+        <div class="card-elegant" style="overflow: hidden;">
+          <div style="height: 180px; background: linear-gradient(135deg, rgba(32,178,170,0.2), rgba(168,85,247,0.2)); display: flex; align-items: center; justify-content: center; position: relative;">
+            <svg class="icon icon-primary" style="width: 4rem; height: 4rem; opacity: 0.8;" viewBox="0 0 24 24"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+            <span style="position: absolute; top: 12px; left: 12px; background: rgba(13,17,23,0.8); padding: 2px 8px; border-radius: 999px; font-size: 0.75rem; color: var(--teal);">01</span>
+          </div>
+          <div style="padding: 1.5rem;">
+            <h3 style="font-size: 1.1rem; font-weight: 600;">Aravind Srinivas</h3>
+            <p style="font-size: 0.75rem; text-transform: uppercase; color: var(--violet); margin-top: 0.25rem; letter-spacing: 0.15em;">Cofundador e CEO</p>
+            <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.75rem; line-height: 1.5;">
+              Doutor por Berkeley, ex-pesquisador da OpenAI, DeepMind e Google. Voz pública da empresa.
+            </p>
+          </div>
+        </div>
+
+        <div class="card-elegant" style="overflow: hidden;">
+          <div style="height: 180px; background: linear-gradient(135deg, rgba(168,85,247,0.2), rgba(32,178,170,0.2)); display: flex; align-items: center; justify-content: center; position: relative;">
+            <svg class="icon icon-accent" style="width: 4rem; height: 4rem; opacity: 0.8;" viewBox="0 0 24 24"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+            <span style="position: absolute; top: 12px; left: 12px; background: rgba(13,17,23,0.8); padding: 2px 8px; border-radius: 999px; font-size: 0.75rem; color: var(--teal);">02</span>
+          </div>
+          <div style="padding: 1.5rem;">
+            <h3 style="font-size: 1.1rem; font-weight: 600;">Denis Yarats</h3>
+            <p style="font-size: 0.75rem; text-transform: uppercase; color: var(--violet); margin-top: 0.25rem; letter-spacing: 0.15em;">Cofundador e CTO</p>
+            <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.75rem; line-height: 1.5;">
+              Ex-pesquisador da Meta (FAIR). Lidera a engenharia e arquitetura do motor de busca.
+            </p>
+          </div>
+        </div>
+
+        <div class="card-elegant" style="overflow: hidden;">
+          <div style="height: 180px; background: linear-gradient(135deg, rgba(32,178,170,0.2), rgba(168,85,247,0.2)); display: flex; align-items: center; justify-content: center; position: relative;">
+            <svg class="icon icon-primary" style="width: 4rem; height: 4rem; opacity: 0.8;" viewBox="0 0 24 24"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+            <span style="position: absolute; top: 12px; left: 12px; background: rgba(13,17,23,0.8); padding: 2px 8px; border-radius: 999px; font-size: 0.75rem; color: var(--teal);">03</span>
+          </div>
+          <div style="padding: 1.5rem;">
+            <h3 style="font-size: 1.1rem; font-weight: 600;">Johnny Ho</h3>
+            <p style="font-size: 0.75rem; text-transform: uppercase; color: var(--violet); margin-top: 0.25rem; letter-spacing: 0.15em;">Cofundador e CSO</p>
+            <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.75rem; line-height: 1.5;">
+              Ex-engenheiro do Quora e competidor de programação. Cuida da estratégia de produto.
+            </p>
+          </div>
+        </div>
+
+        <div class="card-elegant" style="overflow: hidden;">
+          <div style="height: 180px; background: linear-gradient(135deg, rgba(168,85,247,0.2), rgba(32,178,170,0.2)); display: flex; align-items: center; justify-content: center; position: relative;">
+            <svg class="icon icon-accent" style="width: 4rem; height: 4rem; opacity: 0.8;" viewBox="0 0 24 24"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+            <span style="position: absolute; top: 12px; left: 12px; background: rgba(13,17,23,0.8); padding: 2px 8px; border-radius: 999px; font-size: 0.75rem; color: var(--teal);">04</span>
+          </div>
+          <div style="padding: 1.5rem;">
+            <h3 style="font-size: 1.1rem; font-weight: 600;">Andy Konwinski</h3>
+            <p style="font-size: 0.75rem; text-transform: uppercase; color: var(--violet); margin-top: 0.25rem; letter-spacing: 0.15em;">Cofundador</p>
+            <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.75rem; line-height: 1.5;">
+              Cofundador da Databricks e pesquisador de Berkeley. Especialista em dados em larga escala.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. Recursos -->
+  <section class="slide" id="recursos">
+    <div class="mesh-bg"></div>
+    
+    <div class="slide-content">
+      <div class="slide-badge">
+        <span class="slide-number">05</span>
+        <span class="slide-line"></span>
+        <span class="slide-label">Principais Recursos</span>
+      </div>
+
+      <h2 style="font-size: clamp(2rem, 4.5vw, 3.8rem); font-weight: 700; max-width: 48rem; line-height: 1.15;">
+        Cinco camadas de <span class="text-gradient">profundidade</span>
+      </h2>
+
+      <div class="grid-3" style="margin-top: 3rem;">
+        <div class="card-elegant" style="padding: 2rem;">
+          <div style="display: flex; align-items: center; gap: 0.75rem;">
+            <svg class="icon icon-accent" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+            <h3 style="font-size: 1.25rem; font-weight: 600;">Pro Search</h3>
+          </div>
+          <p style="margin-top: 1rem; font-size: 0.9rem; color: var(--text-muted); line-height: 1.6;">
+            Busca guiada em várias etapas: refina a pergunta, consulta múltiplas fontes e entrega uma resposta com citações.
+          </p>
+        </div>
+
+        <div class="card-elegant" style="padding: 2rem;">
+          <div style="display: flex; align-items: center; gap: 0.75rem;">
+            <svg class="icon icon-accent" viewBox="0 0 24 24"><path d="M10 2v7.31M14 2v7.31M8.5 2h7M14 9.3a6.5 6.5 0 1 1-4 0"/></svg>
+            <h3 style="font-size: 1.25rem; font-weight: 600;">Deep Research</h3>
+          </div>
+          <p style="margin-top: 1rem; font-size: 0.9rem; color: var(--text-muted); line-height: 1.6;">
+            Executa dezenas de buscas encadeadas e devolve um relatório longo, estruturado e referenciado.
+          </p>
+        </div>
+
+        <div class="card-elegant" style="padding: 2rem;">
+          <div style="display: flex; align-items: center; gap: 0.75rem;">
+            <svg class="icon icon-accent" viewBox="0 0 24 24"><path d="m12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83Z"/><path d="m22 17.65-9.17 4.16a2 2 0 0 1-1.66 0L2 17.65"/><path d="m22 12.65-9.17 4.16a2 2 0 0 1-1.66 0L2 12.65"/></svg>
+            <h3 style="font-size: 1.25rem; font-weight: 600;">Spaces</h3>
+          </div>
+          <p style="margin-top: 1rem; font-size: 0.9rem; color: var(--text-muted); line-height: 1.6;">
+            Espaços de trabalho com arquivos e instruções fixas, para pesquisar sempre dentro do seu contexto.
+          </p>
+        </div>
+
+        <div class="card-elegant" style="padding: 2rem;">
+          <div style="display: flex; align-items: center; gap: 0.75rem;">
+            <svg class="icon icon-accent" viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            <h3 style="font-size: 1.25rem; font-weight: 600;">Model Council</h3>
+          </div>
+          <p style="margin-top: 1rem; font-size: 0.9rem; color: var(--text-muted); line-height: 1.6;">
+            Compara respostas de modelos diferentes na mesma pergunta, evidenciando divergências antes da decisão.
+          </p>
+        </div>
+
+        <div class="card-elegant" style="padding: 2rem;">
+          <div style="display: flex; align-items: center; gap: 0.75rem;">
+            <svg class="icon icon-accent" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/></svg>
+            <h3 style="font-size: 1.25rem; font-weight: 600;">Comet</h3>
+          </div>
+          <p style="margin-top: 1rem; font-size: 0.9rem; color: var(--text-muted); line-height: 1.6;">
+            Navegador com IA integrada: resume a página aberta e responde sem interromper o seu fluxo.
+          </p>
+        </div>
+
+        <div style="border: 1px dashed var(--card-border); border-radius: var(--radius-2xl); padding: 2rem; display: flex; flex-direction: column; justify-content: center;">
+          <svg class="icon icon-primary" viewBox="0 0 24 24"><path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"/></svg>
+          <p style="margin-top: 1rem; font-size: 0.9rem; color: var(--text-muted); line-height: 1.6;">
+            Todos os recursos partilham a mesma base: buscar, ler, citar. Muda apenas a profundidade e o formato da entrega.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. Nichos -->
+  <section class="slide" id="nichos">
+    <div class="grid-bg"></div>
+    
+    <div class="slide-content">
+      <div class="slide-badge">
+        <span class="slide-number">06</span>
+        <span class="slide-line"></span>
+        <span class="slide-label">Aplicações por nicho</span>
+      </div>
+
+      <h2 style="font-size: clamp(2rem, 4.5vw, 3.8rem); font-weight: 700; max-width: 48rem; line-height: 1.15;">
+        Três negócios de bairro, três usos <span class="text-gradient">concretos</span>
+      </h2>
+
+      <div class="grid-3" style="margin-top: 3rem;">
+        <div class="card-elegant" style="padding: 2rem; display: flex; flex-direction: column;">
+          <svg class="icon icon-primary" style="width: 2.2rem; height: 2.2rem;" viewBox="0 0 24 24"><path d="m16 2-2.3 2.3a3 3 0 0 0 0 4.2l1.8 1.8a3 3 0 0 0 4.2 0L22 8Z"/><path d="M15 15 3.3 3.3a4.2 4.2 0 0 0 0 6l7.3 7.3c.7.7 2 .7 2.8 0L15 15Zm0 0 7 7M2.1 21.8l6.4-6.3"/></svg>
+          <h3 style="margin-top: 1.5rem; font-size: 1.5rem; font-weight: 600;">Alimentação</h3>
+          <p style="font-size: 0.75rem; text-transform: uppercase; color: var(--text-muted); letter-spacing: 0.15em; margin-top: 0.25rem;">
+            Padaria · Cafeteria · Hamburgueria
+          </p>
+          <div style="margin-top: 1.75rem; display: flex; flex-direction: column; gap: 1.25rem; font-size: 0.9rem; line-height: 1.6;">
+            <div>
+              <p style="font-size: 0.75rem; text-transform: uppercase; color: var(--violet); letter-spacing: 0.2em; margin-bottom: 0.5rem; font-weight: 600;">Problema</p>
+              <p style="color: var(--text-muted);">O cardápio é definido por intuição e o preço é copiado do vizinho, sem saber o que o público da região realmente procura.</p>
+            </div>
+            <div>
+              <p style="font-size: 0.75rem; text-transform: uppercase; color: var(--teal); letter-spacing: 0.2em; margin-bottom: 0.5rem; font-weight: 600;">Como a Perplexity ajuda</p>
+              <p style="color: var(--text-muted);">Levanta tendências de cardápio da estação, compara faixas de preço praticadas na cidade e sugere combos com margem, sempre com o link da fonte.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="card-elegant" style="padding: 2rem; display: flex; flex-direction: column;">
+          <svg class="icon icon-primary" style="width: 2.2rem; height: 2.2rem;" viewBox="0 0 24 24"><path d="M20.38 3.46 16 2a4 4 0 0 1-8 0L3.62 3.46a2 2 0 0 0-1.34 2.23l.58 3.47a1 1 0 0 0 .99.84H6v10c0 1.1.9 2 2 2h8a2 2 0 0 0 2-2V10h2.15a1 1 0 0 0 .99-.84l.58-3.47a2 2 0 0 0-1.34-2.23z"/></svg>
+          <h3 style="margin-top: 1.5rem; font-size: 1.5rem; font-weight: 600;">Moda e vestuário</h3>
+          <p style="font-size: 0.75rem; text-transform: uppercase; color: var(--text-muted); letter-spacing: 0.15em; margin-top: 0.25rem;">
+            Loja de bairro · Brechó · Marca autoral
+          </p>
+          <div style="margin-top: 1.75rem; display: flex; flex-direction: column; gap: 1.25rem; font-size: 0.9rem; line-height: 1.6;">
+            <div>
+              <p style="font-size: 0.75rem; text-transform: uppercase; color: var(--violet); letter-spacing: 0.2em; margin-bottom: 0.5rem; font-weight: 600;">Problema</p>
+              <p style="color: var(--text-muted);">A compra de coleção acontece no escuro: difícil saber quais peças, cores e modelagens vão girar na próxima estação.</p>
+            </div>
+            <div>
+              <p style="font-size: 0.75rem; text-transform: uppercase; color: var(--teal); letter-spacing: 0.2em; margin-bottom: 0.5rem; font-weight: 600;">Como a Perplexity ajuda</p>
+              <p style="color: var(--text-muted);">Resume tendências de estação a partir de portais de moda, analisa concorrentes diretos e transforma em lista de prioridades de compra.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="card-elegant" style="padding: 2rem; display: flex; flex-direction: column;">
+          <svg class="icon icon-primary" style="width: 2.2rem; height: 2.2rem;" viewBox="0 0 24 24"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><line x1="20" x2="8.12" y1="4" y2="15.88"/><line x1="14.47" x2="20" y1="14.48" y2="20"/><line x1="8.12" x2="12" y1="8.12" y2="12"/></svg>
+          <h3 style="margin-top: 1.5rem; font-size: 1.5rem; font-weight: 600;">Serviços de beleza</h3>
+          <p style="font-size: 0.75rem; text-transform: uppercase; color: var(--text-muted); letter-spacing: 0.15em; margin-top: 0.25rem;">
+            Salão · Barbearia · Studio de unhas
+          </p>
+          <div style="margin-top: 1.75rem; display: flex; flex-direction: column; gap: 1.25rem; font-size: 0.9rem; line-height: 1.6;">
+            <div>
+              <p style="font-size: 0.75rem; text-transform: uppercase; color: var(--violet); letter-spacing: 0.2em; margin-bottom: 0.5rem; font-weight: 600;">Problema</p>
+              <p style="color: var(--text-muted);">As redes sociais ficam paradas por falta de tempo e ideias, e o agendamento depende só do boca a boca.</p>
+            </div>
+            <div>
+              <p style="font-size: 0.75rem; text-transform: uppercase; color: var(--teal); letter-spacing: 0.2em; margin-bottom: 0.5rem; font-weight: 600;">Como a Perplexity ajuda</p>
+              <p style="color: var(--text-muted);">Gera um plano de conteúdo mensal com temas, formatos e legendas por semana, apoiado em buscas de tendências do setor.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7. Demonstração prática COM CLIQUE PARA ABRIR E ZOOM -->
+  <section class="slide" id="demonstracao">
+    <div class="mesh-bg"></div>
+    
+    <div class="slide-content">
+      <div class="slide-badge">
+        <span class="slide-number">07</span>
+        <span class="slide-line"></span>
+        <span class="slide-label">Demonstração prática</span>
+      </div>
+
+      <h2 style="font-size: clamp(2rem, 4.5vw, 3.8rem); font-weight: 700; max-width: 48rem; line-height: 1.15;">
+        Prompts testados na <span class="text-gradient">prática</span>
+      </h2>
+
+      <p style="margin-top: 1rem; font-size: 0.95rem; color: var(--text-muted); max-width: 45rem; line-height: 1.6;">
+        <strong>Clique em qualquer imagem abaixo para ampliar em tela cheia e ver a resposta detalhada da IA.</strong> Você também pode editar as legendas de cada teste.
+      </p>
+
+      <div class="grid-3" style="margin-top: 2.5rem;">
+        <!-- Card 1 -->
+        <div class="card-elegant screenshot-card">
+          <div class="screenshot-container" onclick="openLightbox('prompt1', 'Prompt 1 — Tendências de cardápio e faixa de preço', 'Pesquisa ao vivo: A Perplexity reuniu 5 fontes recentes do mercado gastronômico brasileiro, listando tendências de smash burgers, queijos especiais e faixas de preço de combos praticadas em bairros vizinhos.')">
+            <!-- Imagem do Prompt 1 -->
+            <img id="imgPrompt1" src="https://raw.githubusercontent.com/creativeprompts0-dot/perplexity-slide-deck/main/src/assets/prompt-1.jpg" onerror="this.src='https://images.unsplash.com/photo-1550547660-d9450f859349?w=1200&auto=format&fit=crop&q=80'" alt="Prompt 1 - Tendências de cardápio" />
+            <div class="zoom-overlay-hint">
+              <span class="zoom-badge">
+                <svg class="icon" style="width: 1rem; height: 1rem;" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+                Clique para ampliar
+              </span>
+              <span style="font-size: 0.75rem; color: #e2e8f0;">Ver conversa completa</span>
+            </div>
+          </div>
+          <div contenteditable="true" style="padding: 1.25rem; font-size: 0.9rem; color: var(--text-muted); line-height: 1.5;">
+            Prompt 1 — Tendências de cardápio e faixa de preço praticada no bairro.
+          </div>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="card-elegant screenshot-card">
+          <div class="screenshot-container" onclick="openLightbox('prompt2', 'Prompt 2 — Análise de concorrentes diretos e diferenciais', 'Deep Research: Execução de busca aprofundada gerando uma tabela comparativa com nome do concorrente, faixa de preço praticada, diferenciais de posicionamento e links diretos das redes sociais.')">
+            <!-- Imagem do Prompt 2 -->
+            <img id="imgPrompt2" src="https://raw.githubusercontent.com/creativeprompts0-dot/perplexity-slide-deck/main/src/assets/prompt-2.jpg" onerror="this.src='https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1200&auto=format&fit=crop&q=80'" alt="Prompt 2 - Análise de Concorrentes" />
+            <div class="zoom-overlay-hint">
+              <span class="zoom-badge">
+                <svg class="icon" style="width: 1rem; height: 1rem;" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+                Clique para ampliar
+              </span>
+              <span style="font-size: 0.75rem; color: #e2e8f0;">Ver tabela completa</span>
+            </div>
+          </div>
+          <div contenteditable="true" style="padding: 1.25rem; font-size: 0.9rem; color: var(--text-muted); line-height: 1.5;">
+            Prompt 2 — Análise de concorrentes diretos e diferenciais de comunicação.
+          </div>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="card-elegant screenshot-card">
+          <div class="screenshot-container" onclick="openLightbox('prompt3', 'Prompt 3 — Plano de conteúdo de 4 semanas para redes sociais', 'Planejamento Editorial: Calendário semanal com foco em engajamento local para salão/barbearia, organizando dias da semana, temas de reels, legendas prontas e chamadas para ação (CTA).')">
+            <!-- Imagem do Prompt 3 -->
+            <img id="imgPrompt3" src="https://raw.githubusercontent.com/creativeprompts0-dot/perplexity-slide-deck/main/src/assets/prompt-3.jpg" onerror="this.src='https://images.unsplash.com/photo-1611162617474-5b21e879e113?w=1200&auto=format&fit=crop&q=80'" alt="Prompt 3 - Plano de conteúdo" />
+            <div class="zoom-overlay-hint">
+              <span class="zoom-badge">
+                <svg class="icon" style="width: 1rem; height: 1rem;" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+                Clique para ampliar
+              </span>
+              <span style="font-size: 0.75rem; color: #e2e8f0;">Ver cronograma completo</span>
+            </div>
+          </div>
+          <div contenteditable="true" style="padding: 1.25rem; font-size: 0.9rem; color: var(--text-muted); line-height: 1.5;">
+            Prompt 3 — Plano de conteúdo de quatro semanas para redes sociais.
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 8. Caso real -->
+  <section class="slide" id="caso">
+    <div class="grid-bg"></div>
+    
+    <div class="slide-content">
+      <div class="slide-badge">
+        <span class="slide-number">08</span>
+        <span class="slide-line"></span>
+        <span class="slide-label">Caso Real</span>
+      </div>
+
+      <h2 style="font-size: clamp(2rem, 4.5vw, 3.8rem); font-weight: 700; max-width: 48rem; line-height: 1.15;">
+        Estudo de caso: <span class="text-gradient">negócio local</span>
+      </h2>
+
+      <div class="card-elegant" style="margin-top: 2.5rem; padding: 2.5rem;">
+        <div contenteditable="true" style="font-size: clamp(1.5rem, 3vw, 2.2rem); font-weight: 700; font-family: 'Space Grotesk', sans-serif;">
+          Padaria & Confeitaria Sabor da Vila — São Paulo / SP
+        </div>
+
+        <div class="grid-3" style="margin-top: 2.5rem; gap: 2rem;">
+          <div>
+            <p style="font-size: 0.75rem; text-transform: uppercase; color: var(--teal); letter-spacing: 0.2em; margin-bottom: 0.75rem; font-weight: 600;">Problema</p>
+            <div contenteditable="true" style="font-size: 0.95rem; color: var(--text-muted); line-height: 1.6; min-height: 7rem;">
+              Dificuldade em precificar novos pães artesanais e falta de opções veganas no cardápio matinal, perdendo público jovem para cafeterias vizinhas.
+            </div>
+          </div>
+
+          <div>
+            <p style="font-size: 0.75rem; text-transform: uppercase; color: var(--teal); letter-spacing: 0.2em; margin-bottom: 0.75rem; font-weight: 600;">Como a IA ajudou</p>
+            <div contenteditable="true" style="font-size: 0.95rem; color: var(--text-muted); line-height: 1.6; min-height: 7rem;">
+              A Perplexity levantou as 5 receitas veganas mais buscadas em cafeterias da região e comparou a média de preços dos 4 principais concorrentes em um raio de 3km.
+            </div>
+          </div>
+
+          <div>
+            <p style="font-size: 0.75rem; text-transform: uppercase; color: var(--teal); letter-spacing: 0.2em; margin-bottom: 0.75rem; font-weight: 600;">Resultado</p>
+            <div contenteditable="true" style="font-size: 0.95rem; color: var(--text-muted); line-height: 1.6; min-height: 7rem;">
+              Lançamento de combo de café com leite vegetal e toast vegano com margem de 45%, aumentando o faturamento matinal em 18% no primeiro mês.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 9. Uso responsável -->
+  <section class="slide" id="uso-responsavel">
+    <div class="slide-content">
+      <div class="slide-badge">
+        <span class="slide-number">09</span>
+        <span class="slide-line"></span>
+        <span class="slide-label">Uso responsável</span>
+      </div>
+
+      <div style="position: relative; overflow: hidden; border-radius: var(--radius-2xl); border: 1px solid rgba(248, 113, 113, 0.35); background: rgba(248, 113, 113, 0.08); padding: clamp(2rem, 5vw, 3.5rem);">
+        <svg class="icon icon-destructive" style="width: 2.5rem; height: 2.5rem;" viewBox="0 0 24 24"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><line x1="12" x2="12" y1="9" y2="13"/><line x1="12" x2="12.01" y1="17" y2="17"/></svg>
+        
+        <h2 style="margin-top: 1.5rem; font-size: clamp(1.8rem, 3.5vw, 2.8rem); font-weight: 700; line-height: 1.2;">
+          A citação não é garantia de verdade. Confira sempre.
+        </h2>
+
+        <div class="grid-2" style="margin-top: 2.5rem; gap: 1.5rem; font-size: 0.95rem; line-height: 1.6; color: rgba(255, 255, 255, 0.9);">
+          <div>
+            <strong style="color: #fff;">• Interpretação equivocada da fonte:</strong> a IA pode resumir um dado fora de contexto ou inverter uma conclusão do texto original.
+          </div>
+          <div>
+            <strong style="color: #fff;">• Fontes de qualidade desigual:</strong> blogs, fóruns e páginas comerciais podem aparecer ao lado de estudos sérios.
+          </div>
+          <div>
+            <strong style="color: #fff;">• Dados desatualizados:</strong> preços, leis e tendências mudam com o tempo; verifique sempre a data de publicação do link citado.
+          </div>
+          <div>
+            <strong style="color: #fff;">• Decisão é humana:</strong> use a resposta como ponto de partida, nunca como laudo final para investimentos ou obrigações legais.
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 10. Encerramento -->
+  <section class="slide" id="encerramento" style="text-align: center;">
+    <div class="mesh-bg"></div>
+    <div class="dots-bg"></div>
+    
+    <div class="slide-content">
+      <div style="display: inline-flex; align-items: center; justify-content: center; width: 56px; height: 56px; border-radius: 16px; background: rgba(32,178,170,0.15); margin-bottom: 2rem;">
+        <svg class="icon icon-primary" style="width: 2rem; height: 2rem;" viewBox="0 0 24 24"><path d="m12 3-1.9 5.8a2 2 0 0 1-1.3 1.3L3 12l5.8 1.9a2 2 0 0 1 1.3 1.3L12 21l1.9-5.8a2 2 0 0 1 1.3-1.3L21 12l-5.8-1.9a2 2 0 0 1-1.3-1.3Z"/></svg>
+      </div>
+
+      <h2 style="font-size: clamp(2.2rem, 5vw, 4.2rem); font-weight: 700; max-width: 58rem; margin: 0 auto; line-height: 1.2;">
+        Se você tivesse apenas este recurso de IA e um pequeno negócio local, <span class="text-gradient">como usaria essa ferramenta amanhã?</span>
+      </h2>
+
+      <div style="margin-top: 3.5rem; display: flex; align-items: center; justify-content: center; gap: 1rem;">
+        <div style="width: 38px; height: 38px; border-radius: 10px; background: #fff; display: flex; align-items: center; justify-content: center;">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2.5"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+        </div>
+        <span style="font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.28em; color: var(--text-muted); font-weight: 600;">
+          Obrigado · Perguntas e Discussão
+        </span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Script for Lightbox & Slide navigation -->
+  <script>
+    // Lightbox handling
+    function openLightbox(id, title, caption) {
+      let imgSrc = "";
+      if (id === 'prompt1') imgSrc = document.getElementById('imgPrompt1').src;
+      else if (id === 'prompt2') imgSrc = document.getElementById('imgPrompt2').src;
+      else if (id === 'prompt3') imgSrc = document.getElementById('imgPrompt3').src;
+
+      document.getElementById('lightboxImg').src = imgSrc;
+      document.getElementById('lightboxTitle').textContent = title;
+      document.getElementById('lightboxCaption').textContent = caption;
+      document.getElementById('lightboxModal').classList.add('active');
+    }
+
+    function closeLightbox(event) {
+      if (event.target === document.getElementById('lightboxModal')) {
+        closeLightboxDirect();
+      }
+    }
+
+    function closeLightboxDirect() {
+      document.getElementById('lightboxModal').classList.remove('active');
+    }
+
+    // Close on ESC
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        closeLightboxDirect();
+      }
+    });
+
+    // Navigation handling
+    const slides = Array.from(document.querySelectorAll('.slide'));
+    const dots = Array.from(document.querySelectorAll('.nav-dot'));
+
+    function getCurrentSlideIndex() {
+      const scrollPos = window.scrollY + window.innerHeight / 2;
+      let currentIndex = 0;
+      slides.forEach((slide, idx) => {
+        if (scrollPos >= slide.offsetTop) {
+          currentIndex = idx;
+        }
+      });
+      return currentIndex;
+    }
+
+    function updateNavDots() {
+      const current = getCurrentSlideIndex();
+      dots.forEach((dot, idx) => {
+        if (idx === current) {
+          dot.classList.add('active');
+        } else {
+          dot.classList.remove('active');
+        }
+      });
+    }
+
+    window.addEventListener('scroll', updateNavDots);
+
+    function nextSlide() {
+      const current = getCurrentSlideIndex();
+      if (current < slides.length - 1) {
+        slides[current + 1].scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+
+    function prevSlide() {
+      const current = getCurrentSlideIndex();
+      if (current > 0) {
+        slides[current - 1].scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+
+    // Keyboard navigation for presentation mode
+    window.addEventListener('keydown', (e) => {
+      if (document.getElementById('lightboxModal').classList.contains('active')) return;
+      if (['ArrowDown', 'ArrowRight', 'PageDown', ' '].includes(e.key) && !e.target.isContentEditable) {
+        e.preventDefault();
+        nextSlide();
+      } else if (['ArrowUp', 'ArrowLeft', 'PageUp'].includes(e.key) && !e.target.isContentEditable) {
+        e.preventDefault();
+        prevSlide();
+      }
+    });
+  </script>
+</body>
+</html>
