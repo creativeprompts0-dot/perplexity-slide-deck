@@ -269,8 +269,8 @@ function Index() {
         </div>
       </Slide>
 
-      {/* 4. Nichos */}
-      <Slide id="nichos" index="03" label="Aplicações por nicho">
+      {/* 5. Nichos */}
+      <Slide id="nichos" index="04" label="Aplicações por nicho">
         <Reveal>
           <h2 className="max-w-3xl text-4xl font-semibold leading-tight md:text-6xl">
             Três negócios de bairro, três usos <span className="text-gradient">concretos</span>
