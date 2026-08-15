@@ -146,9 +146,9 @@ function Index() {
         <img
           src={heroAsset.url}
           alt="Esfera translúcida flutuando sobre um campo de flores, identidade visual da Perplexity"
-          className="pointer-events-none absolute right-0 top-0 h-full w-full object-cover opacity-20 mix-blend-luminosity md:w-3/5"
+          className="pointer-events-none absolute right-0 top-0 h-full w-full object-cover opacity-40 md:w-1/2"
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-background via-background/85 to-background/50" />
+        <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-background via-background/80 to-transparent" />
         <div className="pointer-events-none absolute -left-20 top-1/4 h-96 w-96 rounded-full bg-primary/25 blur-3xl float-slow" />
         <div className="relative mx-auto w-full max-w-6xl">
           <Reveal>
