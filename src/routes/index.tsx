@@ -25,6 +25,10 @@ import heroAsset from "@/assets/perplexity-hero.png.asset.json";
 import prompt1 from "@/assets/prompt-1.jpg";
 import prompt2 from "@/assets/prompt-2.jpg";
 import prompt3 from "@/assets/prompt-3.jpg";
+import founder1 from "@/assets/founder-5.png.asset.json";
+import founder2 from "@/assets/founder-6.png.asset.json";
+import founder3 from "@/assets/founder-7.png.asset.json";
+import founder4 from "@/assets/founder-8.png.asset.json";
 import { Editable, Reveal, ScreenshotSlot, Slide } from "@/components/deck";
 
 
