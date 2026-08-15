@@ -25,6 +25,10 @@ import heroAsset from "@/assets/perplexity-hero.png.asset.json";
 import prompt1 from "@/assets/prompt-1.jpg";
 import prompt2 from "@/assets/prompt-2.jpg";
 import prompt3 from "@/assets/prompt-3.jpg";
+import founder1 from "@/assets/founder-5.png.asset.json";
+import founder2 from "@/assets/founder-6.png.asset.json";
+import founder3 from "@/assets/founder-7.png.asset.json";
+import founder4 from "@/assets/founder-8.png.asset.json";
 import { Editable, Reveal, ScreenshotSlot, Slide } from "@/components/deck";
 
 
@@ -78,6 +82,33 @@ const features = [
   },
 ];
 
+const founders = [
+  {
+    name: "Aravind Srinivas",
+    role: "Cofundador e CEO",
+    photo: founder1.url,
+    text: "Doutor em ciência da computação por Berkeley e ex-pesquisador da OpenAI, DeepMind e Google. É a voz pública da empresa e define o rumo do produto.",
+  },
+  {
+    name: "Denis Yarats",
+    role: "Cofundador e CTO",
+    photo: founder2.url,
+    text: "Ex-pesquisador de inteligência artificial da Meta (FAIR). Lidera a engenharia e a arquitetura do motor de busca e resposta.",
+  },
+  {
+    name: "Johnny Ho",
+    role: "Cofundador e Chief Strategy Officer",
+    photo: founder3.url,
+    text: "Ex-engenheiro do Quora e medalhista em competições de programação. Cuida da estratégia e do crescimento do produto.",
+  },
+  {
+    name: "Andy Konwinski",
+    role: "Cofundador",
+    photo: founder4.url,
+    text: "Cofundador da Databricks e pesquisador ligado a Berkeley. Traz a experiência de construir empresas de dados em larga escala.",
+  },
+];
+
 const niches = [
   {
     icon: UtensilsCrossed,
@@ -110,20 +141,22 @@ function Index() {
     <main className="relative w-full bg-background">
       {/* 1. Hero */}
       <section className="relative flex min-h-screen items-center overflow-hidden px-6 md:px-16 lg:px-24">
+        <div className="mesh-bg pointer-events-none absolute inset-0" />
+        <div className="dots-bg pointer-events-none absolute inset-0 opacity-60" />
         <img
           src={heroAsset.url}
           alt="Esfera translúcida flutuando sobre um campo de flores, identidade visual da Perplexity"
-          className="pointer-events-none absolute inset-0 h-full w-full object-cover opacity-25"
+          className="pointer-events-none absolute right-0 top-0 h-full w-full object-cover opacity-40 md:w-1/2"
         />
-        <div className="glow-bg pointer-events-none absolute inset-0" />
-        <div className="absolute inset-0 bg-gradient-to-b from-background/60 via-background/80 to-background" />
+        <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-background via-background/80 to-transparent" />
+        <div className="pointer-events-none absolute -left-20 top-1/4 h-96 w-96 rounded-full bg-primary/25 blur-3xl float-slow" />
         <div className="relative mx-auto w-full max-w-6xl">
           <Reveal>
             <div className="mb-10 flex items-center gap-4">
               <img
                 src={logoAsset.url}
                 alt="Logo da Perplexity"
-                className="h-12 w-12 rounded-xl border border-border bg-card p-1.5"
+                className="h-12 w-12 rounded-xl bg-foreground p-1.5 shadow-lg"
               />
               <span className="text-xs uppercase tracking-[0.32em] text-muted-foreground">
                 IA aplicada a pequenos negócios
@@ -242,8 +275,52 @@ function Index() {
         </div>
       </Slide>
 
+      {/* 4. Fundadores */}
+      <Slide id="fundadores" index="03" label="Quem criou">
+        <Reveal>
+          <h2 className="max-w-4xl text-4xl font-semibold leading-tight md:text-6xl">
+            As quatro pessoas por trás da{" "}
+            <span className="text-gradient">Perplexity</span>
+          </h2>
+        </Reveal>
+        <Reveal delay={100}>
+          <p className="mt-6 max-w-2xl text-lg leading-relaxed text-muted-foreground">
+            Um time de pesquisadores e engenheiros de IA que se conheceu entre laboratórios de ponta
+            e decidiu reinventar a forma de buscar informação.
+          </p>
+        </Reveal>
+        <div className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+          {founders.map((founder, i) => (
+            <Reveal key={founder.name} delay={i * 110}>
+              <div className="card-elegant group h-full overflow-hidden transition-transform duration-500 hover:-translate-y-1">
+                <div className="relative aspect-square overflow-hidden bg-secondary">
+                  <img
+                    src={founder.photo}
+                    alt={`Retrato de ${founder.name}, cofundador da Perplexity`}
+                    loading="lazy"
+                    className="h-full w-full object-cover object-top transition-transform duration-700 group-hover:scale-105"
+                  />
+                  <span className="absolute left-4 top-4 rounded-full bg-background/85 px-3 py-1 font-display text-xs tabular-nums text-primary backdrop-blur">
+                    0{i + 1}
+                  </span>
+                </div>
+                <div className="p-6">
+                  <h3 className="text-lg font-semibold">{founder.name}</h3>
+                  <p className="mt-1 text-xs uppercase tracking-[0.18em] text-accent">
+                    {founder.role}
+                  </p>
+                  <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
+                    {founder.text}
+                  </p>
+                </div>
+              </div>
+            </Reveal>
+          ))}
+        </div>
+      </Slide>
+
       {/* 4. Recursos */}
-      <Slide id="recursos" index="03" label="Principais recursos">
+      <Slide id="recursos" index="04" label="Principais recursos">
         <Reveal>
           <h2 className="max-w-3xl text-4xl font-semibold leading-tight md:text-6xl">
             Cinco camadas de <span className="text-gradient">profundidade</span>
@@ -274,7 +351,7 @@ function Index() {
       </Slide>
 
       {/* 5. Nichos */}
-      <Slide id="nichos" index="04" label="Aplicações por nicho">
+      <Slide id="nichos" index="05" label="Aplicações por nicho">
         <Reveal>
           <h2 className="max-w-3xl text-4xl font-semibold leading-tight md:text-6xl">
             Três negócios de bairro, três usos <span className="text-gradient">concretos</span>
@@ -308,7 +385,7 @@ function Index() {
       </Slide>
 
       {/* 6. Demonstração */}
-      <Slide id="demonstracao" index="05" label="Demonstração prática">
+      <Slide id="demonstracao" index="06" label="Demonstração prática">
         <Reveal>
           <h2 className="max-w-3xl text-4xl font-semibold leading-tight md:text-6xl">
             Prompts testados na <span className="text-gradient">prática</span>
@@ -344,7 +421,7 @@ function Index() {
       </Slide>
 
       {/* 7. Caso real */}
-      <Slide id="caso" index="06" label="Caso real">
+      <Slide id="caso" index="07" label="Caso real">
         <Reveal>
           <h2 className="max-w-3xl text-4xl font-semibold leading-tight md:text-6xl">
             Estudo de caso: <span className="text-gradient">negócio local</span>
@@ -374,7 +451,7 @@ function Index() {
       </Slide>
 
       {/* 8. Uso responsável */}
-      <Slide id="uso-responsavel" index="07" label="Uso responsável">
+      <Slide id="uso-responsavel" index="08" label="Uso responsável">
         <Reveal>
           <div className="relative overflow-hidden rounded-3xl border border-destructive/40 bg-destructive/10 p-8 md:p-14">
             <AlertTriangle className="text-destructive" size={32} />
@@ -405,7 +482,8 @@ function Index() {
 
       {/* 8. Encerramento */}
       <section className="relative flex min-h-screen items-center justify-center overflow-hidden px-6 py-24 text-center md:px-16">
-        <div className="glow-bg pointer-events-none absolute inset-0" />
+        <div className="mesh-bg pointer-events-none absolute inset-0" />
+        <div className="dots-bg pointer-events-none absolute inset-0 opacity-50" />
         <div className="relative mx-auto max-w-4xl">
           <Reveal>
             <Sparkles className="mx-auto text-primary" size={28} />
@@ -421,7 +499,7 @@ function Index() {
               <img
                 src={logoAsset.url}
                 alt="Logo da Perplexity"
-                className="h-10 w-10 rounded-lg border border-border bg-card p-1.5"
+                className="h-10 w-10 rounded-lg bg-foreground p-1.5 shadow-md"
               />
               <span className="text-xs uppercase tracking-[0.28em] text-muted-foreground">
                 Obrigado · Perguntas
