@@ -303,8 +303,8 @@ function Index() {
         </div>
       </Slide>
 
-      {/* 5. Demonstração */}
-      <Slide id="demonstracao" index="04" label="Demonstração prática">
+      {/* 6. Demonstração */}
+      <Slide id="demonstracao" index="05" label="Demonstração prática">
         <Reveal>
           <h2 className="max-w-3xl text-4xl font-semibold leading-tight md:text-6xl">
             Prompts testados na <span className="text-gradient">prática</span>
