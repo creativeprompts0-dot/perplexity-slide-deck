@@ -482,7 +482,8 @@ function Index() {
 
       {/* 8. Encerramento */}
       <section className="relative flex min-h-screen items-center justify-center overflow-hidden px-6 py-24 text-center md:px-16">
-        <div className="glow-bg pointer-events-none absolute inset-0" />
+        <div className="mesh-bg pointer-events-none absolute inset-0" />
+        <div className="dots-bg pointer-events-none absolute inset-0 opacity-50" />
         <div className="relative mx-auto max-w-4xl">
           <Reveal>
             <Sparkles className="mx-auto text-primary" size={28} />
@@ -498,7 +499,7 @@ function Index() {
               <img
                 src={logoAsset.url}
                 alt="Logo da Perplexity"
-                className="h-10 w-10 rounded-lg border border-border bg-card p-1.5"
+                className="h-10 w-10 rounded-lg bg-foreground p-1.5 shadow-md"
               />
               <span className="text-xs uppercase tracking-[0.28em] text-muted-foreground">
                 Obrigado · Perguntas
