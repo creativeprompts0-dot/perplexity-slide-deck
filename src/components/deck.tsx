@@ -96,19 +96,33 @@ export function Editable({
   );
 }
 
-export function ScreenshotSlot({ caption }: { caption: string }) {
-  const [src, setSrc] = useState<string | null>(null);
+export function ScreenshotSlot({
+  caption,
+  defaultSrc,
+}: {
+  caption: string;
+  defaultSrc?: string;
+}) {
+  const [src, setSrc] = useState<string | null>(defaultSrc ?? null);
 
   return (
     <div className="card-elegant flex h-full flex-col overflow-hidden">
       <label className="group relative flex aspect-[4/3] cursor-pointer items-center justify-center bg-secondary/40">
         {src ? (
-          <img src={src} alt={caption} className="h-full w-full object-cover" />
+          <img
+            src={src}
+            alt={caption}
+            loading="lazy"
+            width={1280}
+            height={960}
+            className="h-full w-full object-cover object-top"
+          />
         ) : (
           <span className="px-6 text-center text-sm text-muted-foreground">
             Clique para inserir o print do prompt
           </span>
         )}
+
         <input
           type="file"
           accept="image/*"
