@@ -320,7 +320,7 @@ function Index() {
       </Slide>
 
       {/* 4. Recursos */}
-      <Slide id="recursos" index="03" label="Principais recursos">
+      <Slide id="recursos" index="04" label="Principais recursos">
         <Reveal>
           <h2 className="max-w-3xl text-4xl font-semibold leading-tight md:text-6xl">
             Cinco camadas de <span className="text-gradient">profundidade</span>
@@ -351,7 +351,7 @@ function Index() {
       </Slide>
 
       {/* 5. Nichos */}
-      <Slide id="nichos" index="04" label="Aplicações por nicho">
+      <Slide id="nichos" index="05" label="Aplicações por nicho">
         <Reveal>
           <h2 className="max-w-3xl text-4xl font-semibold leading-tight md:text-6xl">
             Três negócios de bairro, três usos <span className="text-gradient">concretos</span>
@@ -385,7 +385,7 @@ function Index() {
       </Slide>
 
       {/* 6. Demonstração */}
-      <Slide id="demonstracao" index="05" label="Demonstração prática">
+      <Slide id="demonstracao" index="06" label="Demonstração prática">
         <Reveal>
           <h2 className="max-w-3xl text-4xl font-semibold leading-tight md:text-6xl">
             Prompts testados na <span className="text-gradient">prática</span>
@@ -421,7 +421,7 @@ function Index() {
       </Slide>
 
       {/* 7. Caso real */}
-      <Slide id="caso" index="06" label="Caso real">
+      <Slide id="caso" index="07" label="Caso real">
         <Reveal>
           <h2 className="max-w-3xl text-4xl font-semibold leading-tight md:text-6xl">
             Estudo de caso: <span className="text-gradient">negócio local</span>
@@ -451,7 +451,7 @@ function Index() {
       </Slide>
 
       {/* 8. Uso responsável */}
-      <Slide id="uso-responsavel" index="07" label="Uso responsável">
+      <Slide id="uso-responsavel" index="08" label="Uso responsável">
         <Reveal>
           <div className="relative overflow-hidden rounded-3xl border border-destructive/40 bg-destructive/10 p-8 md:p-14">
             <AlertTriangle className="text-destructive" size={32} />
