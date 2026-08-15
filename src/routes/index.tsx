@@ -110,20 +110,22 @@ function Index() {
     <main className="relative w-full bg-background">
       {/* 1. Hero */}
       <section className="relative flex min-h-screen items-center overflow-hidden px-6 md:px-16 lg:px-24">
+        <div className="mesh-bg pointer-events-none absolute inset-0" />
+        <div className="dots-bg pointer-events-none absolute inset-0 opacity-60" />
         <img
           src={heroAsset.url}
           alt="Esfera translúcida flutuando sobre um campo de flores, identidade visual da Perplexity"
-          className="pointer-events-none absolute inset-0 h-full w-full object-cover opacity-25"
+          className="pointer-events-none absolute right-0 top-0 h-full w-full object-cover opacity-20 mix-blend-luminosity md:w-3/5"
         />
-        <div className="glow-bg pointer-events-none absolute inset-0" />
-        <div className="absolute inset-0 bg-gradient-to-b from-background/60 via-background/80 to-background" />
+        <div className="absolute inset-0 bg-gradient-to-r from-background via-background/85 to-background/50" />
+        <div className="pointer-events-none absolute -left-20 top-1/4 h-96 w-96 rounded-full bg-primary/25 blur-3xl float-slow" />
         <div className="relative mx-auto w-full max-w-6xl">
           <Reveal>
             <div className="mb-10 flex items-center gap-4">
               <img
                 src={logoAsset.url}
                 alt="Logo da Perplexity"
-                className="h-12 w-12 rounded-xl border border-border bg-card p-1.5"
+                className="h-12 w-12 rounded-xl bg-foreground p-1.5 shadow-lg"
               />
               <span className="text-xs uppercase tracking-[0.32em] text-muted-foreground">
                 IA aplicada a pequenos negócios
