@@ -329,8 +329,8 @@ function Index() {
         </div>
       </Slide>
 
-      {/* 6. Caso real */}
-      <Slide id="caso" index="05" label="Caso real">
+      {/* 7. Caso real */}
+      <Slide id="caso" index="06" label="Caso real">
         <Reveal>
           <h2 className="max-w-3xl text-4xl font-semibold leading-tight md:text-6xl">
             Estudo de caso: <span className="text-gradient">negócio local</span>
