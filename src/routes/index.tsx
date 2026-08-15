@@ -22,7 +22,11 @@ import {
 
 import logoAsset from "@/assets/perplexity-logo.png.asset.json";
 import heroAsset from "@/assets/perplexity-hero.png.asset.json";
+import prompt1 from "@/assets/prompt-1.jpg";
+import prompt2 from "@/assets/prompt-2.jpg";
+import prompt3 from "@/assets/prompt-3.jpg";
 import { Editable, Reveal, ScreenshotSlot, Slide } from "@/components/deck";
+
 
 export const Route = createFileRoute("/")({
   head: () => ({
