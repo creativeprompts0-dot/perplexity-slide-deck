@@ -2,18 +2,23 @@ import { createFileRoute } from "@tanstack/react-router";
 import {
   AlertTriangle,
   Boxes,
+  Building2,
+  Calendar,
   Compass,
   FlaskConical,
   Globe,
   Layers,
   Quote,
+  Rocket,
   Scissors,
   Search,
   Shirt,
   Sparkles,
-  UtensilsCrossed,
+  TrendingUp,
   Users,
+  UtensilsCrossed,
 } from "lucide-react";
+
 
 import logoAsset from "@/assets/perplexity-logo.png.asset.json";
 import heroAsset from "@/assets/perplexity-hero.png.asset.json";
