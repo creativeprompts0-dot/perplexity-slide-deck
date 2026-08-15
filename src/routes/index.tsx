@@ -188,8 +188,58 @@ function Index() {
         </div>
       </Slide>
 
-      {/* 3. Recursos */}
-      <Slide id="recursos" index="02" label="Principais recursos">
+      {/* 3. Sobre a Perplexity */}
+      <Slide id="sobre" index="02" label="Sobre a Perplexity">
+        <Reveal>
+          <h2 className="max-w-4xl text-4xl font-semibold leading-tight md:text-6xl">
+            De startup de San Francisco a{" "}
+            <span className="text-gradient">motor de respostas</span> do mundo
+          </h2>
+        </Reveal>
+        <Reveal delay={120}>
+          <p className="mt-8 max-w-2xl text-lg leading-relaxed text-muted-foreground">
+            A Perplexity AI foi fundada em 2022 por Aravind Srinivas, Denis Yarats, Johnny Ho e Andy
+            Konwinski, com sede em São Francisco, Califórnia. A ideia era simples: em vez de entregar
+            uma lista de links, a IA deveria ler as fontes e responder diretamente, citando cada
+            informação.
+          </p>
+        </Reveal>
+        <div className="mt-14 grid gap-5 md:grid-cols-2 lg:grid-cols-4">
+          {[
+            {
+              icon: Calendar,
+              title: "Fundação",
+              text: "Lançada em 2022, a empresa cresceu rapidamente ao propor uma interface de busca conversacional com fontes visíveis.",
+            },
+            {
+              icon: Users,
+              title: "Fundadores",
+              text: "Aravind Srinivas (CEO), Denis Yarats, Johnny Ho e Andy Konwinski — ex-pesquisadores e engenheiros de empresas como Google, OpenAI e Meta.",
+            },
+            {
+              icon: Rocket,
+              title: "Modelo de negócio",
+              text: "Freemium: uso gratuito com limites, e plano Perplexity Pro que desbloqueia buscas avançadas, Deep Research e escolha de modelos.",
+            },
+            {
+              icon: TrendingUp,
+              title: "Trajetória",
+              text: "Passou de ferramenta de nicho a uma das principais alternativas de busca com IA, com parcerias de publicação e expansão de recursos.",
+            },
+          ].map((item, i) => (
+            <Reveal key={item.title} delay={i * 100}>
+              <div className="card-elegant h-full p-7">
+                <item.icon className="text-primary" size={24} />
+                <h3 className="mt-5 text-lg font-semibold">{item.title}</h3>
+                <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{item.text}</p>
+              </div>
+            </Reveal>
+          ))}
+        </div>
+      </Slide>
+
+      {/* 4. Recursos */}
+      <Slide id="recursos" index="03" label="Principais recursos">
         <Reveal>
           <h2 className="max-w-3xl text-4xl font-semibold leading-tight md:text-6xl">
             Cinco camadas de <span className="text-gradient">profundidade</span>
