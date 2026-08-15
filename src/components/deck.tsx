@@ -62,7 +62,10 @@ export function Slide({
       id={id}
       className={`relative flex min-h-screen w-full snap-start flex-col justify-center overflow-hidden px-6 py-24 md:px-16 lg:px-24 ${className}`}
     >
-      <div className="mx-auto w-full max-w-6xl">
+      <div className="pointer-events-none absolute inset-0 grid-bg opacity-70" />
+      <div className="pointer-events-none absolute -right-32 top-10 h-80 w-80 rounded-full bg-accent/15 blur-3xl float-slow" />
+      <div className="pointer-events-none absolute -left-24 bottom-0 h-72 w-72 rounded-full bg-primary/20 blur-3xl float-slow" />
+      <div className="relative mx-auto w-full max-w-6xl">
         <Reveal>
           <div className="mb-8 flex items-center gap-4">
             <span className="font-display text-sm tabular-nums text-primary">{index}</span>
