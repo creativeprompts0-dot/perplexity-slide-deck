@@ -244,6 +244,50 @@ function Index() {
         </div>
       </Slide>
 
+      {/* 4. Fundadores */}
+      <Slide id="fundadores" index="03" label="Quem criou">
+        <Reveal>
+          <h2 className="max-w-4xl text-4xl font-semibold leading-tight md:text-6xl">
+            As quatro pessoas por trás da{" "}
+            <span className="text-gradient">Perplexity</span>
+          </h2>
+        </Reveal>
+        <Reveal delay={100}>
+          <p className="mt-6 max-w-2xl text-lg leading-relaxed text-muted-foreground">
+            Um time de pesquisadores e engenheiros de IA que se conheceu entre laboratórios de ponta
+            e decidiu reinventar a forma de buscar informação.
+          </p>
+        </Reveal>
+        <div className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+          {founders.map((founder, i) => (
+            <Reveal key={founder.name} delay={i * 110}>
+              <div className="card-elegant group h-full overflow-hidden transition-transform duration-500 hover:-translate-y-1">
+                <div className="relative aspect-square overflow-hidden bg-secondary">
+                  <img
+                    src={founder.photo}
+                    alt={`Retrato de ${founder.name}, cofundador da Perplexity`}
+                    loading="lazy"
+                    className="h-full w-full object-cover object-top transition-transform duration-700 group-hover:scale-105"
+                  />
+                  <span className="absolute left-4 top-4 rounded-full bg-background/85 px-3 py-1 font-display text-xs tabular-nums text-primary backdrop-blur">
+                    0{i + 1}
+                  </span>
+                </div>
+                <div className="p-6">
+                  <h3 className="text-lg font-semibold">{founder.name}</h3>
+                  <p className="mt-1 text-xs uppercase tracking-[0.18em] text-accent">
+                    {founder.role}
+                  </p>
+                  <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
+                    {founder.text}
+                  </p>
+                </div>
+              </div>
+            </Reveal>
+          ))}
+        </div>
+      </Slide>
+
       {/* 4. Recursos */}
       <Slide id="recursos" index="03" label="Principais recursos">
         <Reveal>
