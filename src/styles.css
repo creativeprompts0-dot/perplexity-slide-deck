@@ -67,34 +67,34 @@
 
 :root {
   --radius: 1rem;
-  --background: oklch(0.16 0.018 250);
-  --foreground: oklch(0.97 0.005 240);
-  --card: oklch(0.21 0.021 250);
-  --card-foreground: oklch(0.97 0.005 240);
-  --popover: oklch(0.21 0.021 250);
-  --popover-foreground: oklch(0.97 0.005 240);
-  --primary: oklch(0.78 0.13 190);
-  --primary-foreground: oklch(0.18 0.02 250);
-  --secondary: oklch(0.26 0.03 275);
-  --secondary-foreground: oklch(0.97 0.005 240);
-  --muted: oklch(0.24 0.022 255);
-  --muted-foreground: oklch(0.72 0.02 250);
-  --accent: oklch(0.68 0.16 300);
-  --accent-foreground: oklch(0.98 0.005 240);
-  --destructive: oklch(0.7 0.19 30);
-  --destructive-foreground: oklch(0.98 0.005 240);
-  --border: oklch(1 0 0 / 12%);
-  --input: oklch(1 0 0 / 14%);
-  --ring: oklch(0.78 0.13 190);
-  --teal: oklch(0.78 0.13 190);
-  --violet: oklch(0.68 0.16 300);
+  --background: oklch(0.99 0.004 240);
+  --foreground: oklch(0.21 0.025 255);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.21 0.025 255);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.21 0.025 255);
+  --primary: oklch(0.58 0.11 195);
+  --primary-foreground: oklch(0.99 0.004 240);
+  --secondary: oklch(0.96 0.012 250);
+  --secondary-foreground: oklch(0.28 0.03 255);
+  --muted: oklch(0.965 0.008 250);
+  --muted-foreground: oklch(0.5 0.02 255);
+  --accent: oklch(0.55 0.19 300);
+  --accent-foreground: oklch(0.99 0.004 240);
+  --destructive: oklch(0.58 0.19 28);
+  --destructive-foreground: oklch(0.99 0.004 240);
+  --border: oklch(0.21 0.025 255 / 12%);
+  --input: oklch(0.21 0.025 255 / 16%);
+  --ring: oklch(0.58 0.11 195);
+  --teal: oklch(0.58 0.11 195);
+  --violet: oklch(0.55 0.19 300);
   --gradient-brand: linear-gradient(120deg, var(--teal), var(--violet));
   --gradient-glow: radial-gradient(
     60% 60% at 50% 40%,
-    color-mix(in oklab, var(--teal) 22%, transparent),
+    color-mix(in oklab, var(--teal) 16%, transparent),
     transparent 70%
   );
-  --shadow-elegant: 0 24px 60px -30px color-mix(in oklab, var(--violet) 55%, transparent);
+  --shadow-elegant: 0 24px 60px -32px color-mix(in oklab, var(--violet) 26%, transparent);
   --chart-1: oklch(0.646 0.222 41.116);
   --chart-2: oklch(0.6 0.118 184.704);
   --chart-3: oklch(0.398 0.07 227.392);
