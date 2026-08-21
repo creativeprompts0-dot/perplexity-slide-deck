@@ -8,6 +8,7 @@ import {
   FlaskConical,
   Globe,
   Layers,
+  MessageSquareQuote,
   Quote,
   Rocket,
   Scissors,
