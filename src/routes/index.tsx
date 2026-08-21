@@ -170,41 +170,38 @@ function Index() {
     <main className="relative w-full bg-background">
       {/* 1. Hero */}
       <section className="relative flex min-h-screen items-center overflow-hidden px-6 md:px-16 lg:px-24">
-        <div className="mesh-bg pointer-events-none absolute inset-0" />
-        <div className="dots-bg pointer-events-none absolute inset-0 opacity-60" />
-        <img
-          src={heroAsset.url}
-          alt="Esfera translúcida flutuando sobre um campo de flores, identidade visual da Perplexity"
-          className="pointer-events-none absolute right-0 top-0 h-full w-full object-cover opacity-40 md:w-1/2"
-        />
-        <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-background via-background/80 to-transparent" />
-        <div className="pointer-events-none absolute -left-20 top-1/4 h-96 w-96 rounded-full bg-primary/25 blur-3xl float-slow" />
+        <AnimatedBackdrop dense />
         <div className="relative mx-auto w-full max-w-6xl">
-          <Reveal>
+          <Reveal variant="left">
             <div className="mb-10 flex items-center gap-4">
-              <img
-                src={logoAsset.url}
-                alt="Logo da Perplexity"
-                className="h-12 w-12 rounded-xl bg-foreground p-1.5 shadow-lg"
-              />
+              <span className="pulse-ring relative inline-flex rounded-xl">
+                <img
+                  src={logoAsset.url}
+                  alt="Logo da Perplexity"
+                  className="h-12 w-12 rounded-xl bg-foreground p-1.5 shadow-lg"
+                />
+              </span>
               <span className="text-xs uppercase tracking-[0.32em] text-muted-foreground">
                 IA aplicada a pequenos negócios
               </span>
             </div>
           </Reveal>
-          <Reveal delay={120}>
-            <h1 className="text-gradient max-w-4xl text-6xl font-semibold leading-[0.95] md:text-8xl">
-              Perplexity AI
-            </h1>
-          </Reveal>
-          <Reveal delay={240}>
-            <p className="mt-8 max-w-2xl text-xl leading-relaxed text-muted-foreground md:text-2xl">
-              O motor de respostas que pesquisa, cita e decide com você.
-            </p>
-          </Reveal>
-          <Reveal delay={360}>
+          <SplitText
+            as="h1"
+            text="Perplexity AI"
+            highlightFrom={0}
+            delay={120}
+            className="max-w-4xl text-6xl font-semibold leading-[0.95] md:text-8xl"
+          />
+          <SplitText
+            as="p"
+            text="O motor de respostas que pesquisa, cita e decide com você."
+            delay={340}
+            className="mt-8 max-w-2xl text-xl leading-relaxed text-muted-foreground md:text-2xl"
+          />
+          <Reveal delay={700} variant="blur">
             <div className="mt-14 flex items-center gap-3 text-sm text-muted-foreground">
-              <span className="h-10 w-px animate-pulse bg-gradient-to-b from-primary to-transparent" />
+              <span className="scroll-hint h-10 w-px bg-gradient-to-b from-primary to-transparent" />
               Role para começar a apresentação
             </div>
           </Reveal>
