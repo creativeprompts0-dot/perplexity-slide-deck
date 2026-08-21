@@ -21,15 +21,43 @@ import {
 
 
 import logoAsset from "@/assets/perplexity-logo.png.asset.json";
-import heroAsset from "@/assets/perplexity-hero.png.asset.json";
 import prompt1 from "@/assets/prompt-1.jpg";
 import prompt2 from "@/assets/prompt-2.jpg";
 import prompt3 from "@/assets/prompt-3.jpg";
-import founder1 from "@/assets/founder-5.png.asset.json";
-import founder2 from "@/assets/founder-6.png.asset.json";
-import founder3 from "@/assets/founder-7.png.asset.json";
-import founder4 from "@/assets/founder-8.png.asset.json";
-import { Editable, Reveal, ScreenshotSlot, Slide } from "@/components/deck";
+import founder1 from "@/assets/img-11.png.asset.json";
+import founder2 from "@/assets/img-12.png.asset.json";
+import founder3 from "@/assets/img-13.png.asset.json";
+import founder4 from "@/assets/img-14.png.asset.json";
+import cafe1 from "@/assets/img-15.png.asset.json";
+import cafe2 from "@/assets/img-16.png.asset.json";
+import cafe3 from "@/assets/img-17.png.asset.json";
+import {
+  AnimatedBackdrop,
+  Editable,
+  GalleryImage,
+  Reveal,
+  ScreenshotSlot,
+  Slide,
+  SplitText,
+} from "@/components/deck";
+
+const cafeArts = [
+  {
+    src: cafe1.url,
+    title: "Sobremesa da casa",
+    text: "Peça de destaque para o produto do fim da tarde: foto do brownie com chamada curta e apelo de indulgência.",
+  },
+  {
+    src: cafe2.url,
+    title: "Prato do dia",
+    text: "Arte para o almoço executivo, com comida mineira em evidência e mensagem de comida caseira.",
+  },
+  {
+    src: cafe3.url,
+    title: "Onde nos encontrar",
+    text: "Peça de localização, reforçando o endereço em Curvelo e convidando o cliente a visitar a loja.",
+  },
+];
 
 
 export const Route = createFileRoute("/")({
