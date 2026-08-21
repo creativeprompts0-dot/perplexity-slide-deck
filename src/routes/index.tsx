@@ -8,6 +8,7 @@ import {
   FlaskConical,
   Globe,
   Layers,
+  MessageSquareQuote,
   Quote,
   Rocket,
   Scissors,
@@ -21,15 +22,43 @@ import {
 
 
 import logoAsset from "@/assets/perplexity-logo.png.asset.json";
-import heroAsset from "@/assets/perplexity-hero.png.asset.json";
 import prompt1 from "@/assets/prompt-1.jpg";
 import prompt2 from "@/assets/prompt-2.jpg";
 import prompt3 from "@/assets/prompt-3.jpg";
-import founder1 from "@/assets/founder-5.png.asset.json";
-import founder2 from "@/assets/founder-6.png.asset.json";
-import founder3 from "@/assets/founder-7.png.asset.json";
-import founder4 from "@/assets/founder-8.png.asset.json";
-import { Editable, Reveal, ScreenshotSlot, Slide } from "@/components/deck";
+import founder1 from "@/assets/img-11.png.asset.json";
+import founder2 from "@/assets/img-12.png.asset.json";
+import founder3 from "@/assets/img-13.png.asset.json";
+import founder4 from "@/assets/img-14.png.asset.json";
+import cafe1 from "@/assets/img-15.png.asset.json";
+import cafe2 from "@/assets/img-16.png.asset.json";
+import cafe3 from "@/assets/img-17.png.asset.json";
+import {
+  AnimatedBackdrop,
+  Editable,
+  GalleryImage,
+  Reveal,
+  ScreenshotSlot,
+  Slide,
+  SplitText,
+} from "@/components/deck";
+
+const cafeArts = [
+  {
+    src: cafe1.url,
+    title: "Sobremesa da casa",
+    text: "Peça de destaque para o produto do fim da tarde: foto do brownie com chamada curta e apelo de indulgência.",
+  },
+  {
+    src: cafe2.url,
+    title: "Prato do dia",
+    text: "Arte para o almoço executivo, com comida mineira em evidência e mensagem de comida caseira.",
+  },
+  {
+    src: cafe3.url,
+    title: "Onde nos encontrar",
+    text: "Peça de localização, reforçando o endereço em Curvelo e convidando o cliente a visitar a loja.",
+  },
+];
 
 
 export const Route = createFileRoute("/")({
@@ -141,41 +170,38 @@ function Index() {
     <main className="relative w-full bg-background">
       {/* 1. Hero */}
       <section className="relative flex min-h-screen items-center overflow-hidden px-6 md:px-16 lg:px-24">
-        <div className="mesh-bg pointer-events-none absolute inset-0" />
-        <div className="dots-bg pointer-events-none absolute inset-0 opacity-60" />
-        <img
-          src={heroAsset.url}
-          alt="Esfera translúcida flutuando sobre um campo de flores, identidade visual da Perplexity"
-          className="pointer-events-none absolute right-0 top-0 h-full w-full object-cover opacity-40 md:w-1/2"
-        />
-        <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-background via-background/80 to-transparent" />
-        <div className="pointer-events-none absolute -left-20 top-1/4 h-96 w-96 rounded-full bg-primary/25 blur-3xl float-slow" />
+        <AnimatedBackdrop dense />
         <div className="relative mx-auto w-full max-w-6xl">
-          <Reveal>
+          <Reveal variant="left">
             <div className="mb-10 flex items-center gap-4">
-              <img
-                src={logoAsset.url}
-                alt="Logo da Perplexity"
-                className="h-12 w-12 rounded-xl bg-foreground p-1.5 shadow-lg"
-              />
+              <span className="pulse-ring relative inline-flex rounded-xl">
+                <img
+                  src={logoAsset.url}
+                  alt="Logo da Perplexity"
+                  className="h-12 w-12 rounded-xl bg-foreground p-1.5 shadow-lg"
+                />
+              </span>
               <span className="text-xs uppercase tracking-[0.32em] text-muted-foreground">
                 IA aplicada a pequenos negócios
               </span>
             </div>
           </Reveal>
-          <Reveal delay={120}>
-            <h1 className="text-gradient max-w-4xl text-6xl font-semibold leading-[0.95] md:text-8xl">
-              Perplexity AI
-            </h1>
-          </Reveal>
-          <Reveal delay={240}>
-            <p className="mt-8 max-w-2xl text-xl leading-relaxed text-muted-foreground md:text-2xl">
-              O motor de respostas que pesquisa, cita e decide com você.
-            </p>
-          </Reveal>
-          <Reveal delay={360}>
+          <SplitText
+            as="h1"
+            text="Perplexity AI"
+            highlightFrom={0}
+            delay={120}
+            className="max-w-4xl text-6xl font-semibold leading-[0.95] md:text-8xl"
+          />
+          <SplitText
+            as="p"
+            text="O motor de respostas que pesquisa, cita e decide com você."
+            delay={340}
+            className="mt-8 max-w-2xl text-xl leading-relaxed text-muted-foreground md:text-2xl"
+          />
+          <Reveal delay={700} variant="blur">
             <div className="mt-14 flex items-center gap-3 text-sm text-muted-foreground">
-              <span className="h-10 w-px animate-pulse bg-gradient-to-b from-primary to-transparent" />
+              <span className="scroll-hint h-10 w-px bg-gradient-to-b from-primary to-transparent" />
               Role para começar a apresentação
             </div>
           </Reveal>
@@ -420,13 +446,63 @@ function Index() {
 
       </Slide>
 
-      {/* 7. Caso real */}
-      <Slide id="caso" index="07" label="Caso real">
-        <Reveal>
-          <h2 className="max-w-3xl text-4xl font-semibold leading-tight md:text-6xl">
-            Estudo de caso: <span className="text-gradient">negócio local</span>
-          </h2>
+      {/* 7. Café & Cia — Curvelo */}
+      <Slide id="cafe-e-cia" index="07" label="Exemplo real · Café & Cia (Curvelo/MG)">
+        <SplitText
+          text="Artes criadas com IA para o Café & Cia"
+          highlightFrom={4}
+          className="max-w-4xl text-4xl font-semibold leading-tight md:text-6xl"
+        />
+        <Reveal delay={120} variant="blur">
+          <p className="mt-6 max-w-3xl text-lg leading-relaxed text-muted-foreground">
+            Para testar na prática, escolhemos um restaurante e cafeteria de Curvelo (MG): o{" "}
+            <strong className="font-semibold text-foreground">Café &amp; Cia</strong>. A partir de
+            pesquisas sobre o público da cidade, a Perplexity ajudou a escrever as chamadas e a
+            direcionar as peças visuais abaixo. Clique em qualquer imagem para ampliar.
+          </p>
         </Reveal>
+        <div className="mt-12 grid gap-5 md:grid-cols-3">
+          {cafeArts.map((art, i) => (
+            <Reveal key={art.title} delay={i * 130} variant="zoom">
+              <GalleryImage src={art.src} title={art.title} text={art.text} />
+            </Reveal>
+          ))}
+        </div>
+        <Reveal delay={220} variant="blur">
+          <div className="card-elegant mt-8 p-8 md:p-10">
+            <div className="flex items-center gap-3">
+              <MessageSquareQuote className="text-accent" size={24} />
+              <h3 className="text-xl font-semibold">Prompt usado no teste</h3>
+            </div>
+            <Editable className="mt-5 border-l-2 border-primary/50 pl-5 text-base italic leading-relaxed text-muted-foreground">
+              “Sou dono do Café &amp; Cia, um restaurante e cafeteria em Curvelo, Minas Gerais.
+              Pesquise o perfil de consumo da cidade e da região e me diga: quais 3 produtos têm mais
+              chance de vender no fim da tarde, que faixa de preço praticar e quais chamadas usar no
+              Instagram para cada um. Cite as fontes.”
+            </Editable>
+            <div className="mt-8 grid gap-6 md:grid-cols-3">
+              {[
+                ["O que a IA entregou", "Sugestão de brownie/cookie da casa, prato executivo mineiro e combo café da tarde, com faixas de preço e argumentos de venda."],
+                ["O que aproveitamos", "As chamadas curtas das artes, o destaque para a localização e a ideia de comunicar o prato do dia."],
+                ["O que conferimos à mão", "Preço real dos insumos em Curvelo, viabilidade de porção e o que a cozinha consegue entregar no horário de pico."],
+              ].map(([title, text]) => (
+                <div key={title}>
+                  <p className="mb-3 text-xs uppercase tracking-[0.2em] text-primary">{title}</p>
+                  <p className="text-sm leading-relaxed text-muted-foreground">{text}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </Reveal>
+      </Slide>
+
+      {/* 8. Caso real */}
+      <Slide id="caso" index="08" label="Caso real">
+        <SplitText
+          text="Estudo de caso: negócio local"
+          highlightFrom={3}
+          className="max-w-3xl text-4xl font-semibold leading-tight md:text-6xl"
+        />
         <Reveal delay={120}>
           <div className="card-elegant mt-12 p-8 md:p-12">
             <Editable className="text-2xl font-semibold md:text-3xl">
@@ -450,8 +526,8 @@ function Index() {
         </Reveal>
       </Slide>
 
-      {/* 8. Uso responsável */}
-      <Slide id="uso-responsavel" index="08" label="Uso responsável">
+      {/* 9. Uso responsável */}
+      <Slide id="uso-responsavel" index="09" label="Uso responsável">
         <Reveal>
           <div className="relative overflow-hidden rounded-3xl border border-destructive/40 bg-destructive/10 p-8 md:p-14">
             <AlertTriangle className="text-destructive" size={32} />
