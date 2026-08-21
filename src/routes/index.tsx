@@ -420,13 +420,63 @@ function Index() {
 
       </Slide>
 
-      {/* 7. Caso real */}
-      <Slide id="caso" index="07" label="Caso real">
-        <Reveal>
-          <h2 className="max-w-3xl text-4xl font-semibold leading-tight md:text-6xl">
-            Estudo de caso: <span className="text-gradient">negócio local</span>
-          </h2>
+      {/* 7. Café & Cia — Curvelo */}
+      <Slide id="cafe-e-cia" index="07" label="Exemplo real · Café & Cia (Curvelo/MG)">
+        <SplitText
+          text="Artes criadas com IA para o Café & Cia"
+          highlightFrom={4}
+          className="max-w-4xl text-4xl font-semibold leading-tight md:text-6xl"
+        />
+        <Reveal delay={120} variant="blur">
+          <p className="mt-6 max-w-3xl text-lg leading-relaxed text-muted-foreground">
+            Para testar na prática, escolhemos um restaurante e cafeteria de Curvelo (MG): o{" "}
+            <strong className="font-semibold text-foreground">Café &amp; Cia</strong>. A partir de
+            pesquisas sobre o público da cidade, a Perplexity ajudou a escrever as chamadas e a
+            direcionar as peças visuais abaixo. Clique em qualquer imagem para ampliar.
+          </p>
         </Reveal>
+        <div className="mt-12 grid gap-5 md:grid-cols-3">
+          {cafeArts.map((art, i) => (
+            <Reveal key={art.title} delay={i * 130} variant="zoom">
+              <GalleryImage src={art.src} title={art.title} text={art.text} />
+            </Reveal>
+          ))}
+        </div>
+        <Reveal delay={220} variant="blur">
+          <div className="card-elegant mt-8 p-8 md:p-10">
+            <div className="flex items-center gap-3">
+              <MessageSquareQuote className="text-accent" size={24} />
+              <h3 className="text-xl font-semibold">Prompt usado no teste</h3>
+            </div>
+            <Editable className="mt-5 border-l-2 border-primary/50 pl-5 text-base italic leading-relaxed text-muted-foreground">
+              “Sou dono do Café &amp; Cia, um restaurante e cafeteria em Curvelo, Minas Gerais.
+              Pesquise o perfil de consumo da cidade e da região e me diga: quais 3 produtos têm mais
+              chance de vender no fim da tarde, que faixa de preço praticar e quais chamadas usar no
+              Instagram para cada um. Cite as fontes.”
+            </Editable>
+            <div className="mt-8 grid gap-6 md:grid-cols-3">
+              {[
+                ["O que a IA entregou", "Sugestão de brownie/cookie da casa, prato executivo mineiro e combo café da tarde, com faixas de preço e argumentos de venda."],
+                ["O que aproveitamos", "As chamadas curtas das artes, o destaque para a localização e a ideia de comunicar o prato do dia."],
+                ["O que conferimos à mão", "Preço real dos insumos em Curvelo, viabilidade de porção e o que a cozinha consegue entregar no horário de pico."],
+              ].map(([title, text]) => (
+                <div key={title}>
+                  <p className="mb-3 text-xs uppercase tracking-[0.2em] text-primary">{title}</p>
+                  <p className="text-sm leading-relaxed text-muted-foreground">{text}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </Reveal>
+      </Slide>
+
+      {/* 8. Caso real */}
+      <Slide id="caso" index="08" label="Caso real">
+        <SplitText
+          text="Estudo de caso: negócio local"
+          highlightFrom={3}
+          className="max-w-3xl text-4xl font-semibold leading-tight md:text-6xl"
+        />
         <Reveal delay={120}>
           <div className="card-elegant mt-12 p-8 md:p-12">
             <Editable className="text-2xl font-semibold md:text-3xl">
