@@ -252,3 +252,184 @@
     transform: none;
   }
 }
+
+/* ===== Animações do deck ===== */
+
+@utility reveal-up {
+  transform: translateY(28px);
+  &[data-visible="true"] { transform: none; }
+}
+@utility reveal-left {
+  transform: translateX(-32px);
+  &[data-visible="true"] { transform: none; }
+}
+@utility reveal-right {
+  transform: translateX(32px);
+  &[data-visible="true"] { transform: none; }
+}
+@utility reveal-zoom {
+  transform: scale(0.94);
+  &[data-visible="true"] { transform: none; }
+}
+@utility reveal-blur {
+  filter: blur(10px);
+  transform: translateY(20px);
+  &[data-visible="true"] { filter: none; transform: none; }
+}
+
+/* Título palavra por palavra */
+@utility word-wrap {
+  display: block;
+}
+@utility word-mask {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: bottom;
+  padding-right: 0.28em;
+}
+@utility word {
+  display: inline-block;
+  transform: translateY(110%);
+  opacity: 0;
+  transition:
+    transform 0.85s cubic-bezier(0.16, 1, 0.3, 1),
+    opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+  [data-visible="true"] & {
+    transform: none;
+    opacity: 1;
+  }
+}
+
+@utility line-grow {
+  width: 0;
+  transition: width 1s cubic-bezier(0.16, 1, 0.3, 1) 0.2s;
+  [data-visible="true"] & { width: 2.5rem; }
+}
+
+/* Auroras animadas de fundo */
+@utility aurora {
+  position: absolute;
+  border-radius: 999px;
+  filter: blur(80px);
+  opacity: 0.55;
+  will-change: transform;
+}
+@utility aurora-a {
+  top: -12%;
+  left: -8%;
+  width: 46vw;
+  height: 46vw;
+  background: radial-gradient(circle, color-mix(in oklab, var(--teal) 55%, transparent), transparent 70%);
+  animation: drift-a 22s ease-in-out infinite;
+}
+@utility aurora-b {
+  bottom: -18%;
+  right: -10%;
+  width: 42vw;
+  height: 42vw;
+  background: radial-gradient(circle, color-mix(in oklab, var(--violet) 50%, transparent), transparent 70%);
+  animation: drift-b 26s ease-in-out infinite;
+}
+@utility aurora-c {
+  top: 30%;
+  left: 42%;
+  width: 34vw;
+  height: 34vw;
+  background: radial-gradient(circle, color-mix(in oklab, var(--teal) 38%, transparent), transparent 70%);
+  animation: drift-c 30s ease-in-out infinite;
+}
+
+@keyframes drift-a {
+  0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
+  50% { transform: translate3d(14vw, 8vh, 0) scale(1.18); }
+}
+@keyframes drift-b {
+  0%, 100% { transform: translate3d(0, 0, 0) scale(1.05); }
+  50% { transform: translate3d(-12vw, -10vh, 0) scale(0.9); }
+}
+@keyframes drift-c {
+  0%, 100% { transform: translate3d(0, 0, 0) scale(0.95); }
+  33% { transform: translate3d(-9vw, 7vh, 0) scale(1.12); }
+  66% { transform: translate3d(8vw, -6vh, 0) scale(1); }
+}
+
+@utility conic-glow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 120vmax;
+  height: 120vmax;
+  margin-left: -60vmax;
+  margin-top: -60vmax;
+  opacity: 0.16;
+  background: conic-gradient(
+    from 0deg,
+    transparent 0deg,
+    color-mix(in oklab, var(--teal) 70%, transparent) 90deg,
+    transparent 180deg,
+    color-mix(in oklab, var(--violet) 70%, transparent) 270deg,
+    transparent 360deg
+  );
+  mask-image: radial-gradient(closest-side, black, transparent 78%);
+  animation: spin-slow 34s linear infinite;
+}
+@keyframes spin-slow {
+  to { transform: rotate(360deg); }
+}
+
+@utility shine-sweep {
+  background: linear-gradient(
+    100deg,
+    transparent 35%,
+    color-mix(in oklab, var(--card) 55%, transparent) 50%,
+    transparent 65%
+  );
+  background-size: 250% 100%;
+  animation: sweep 9s ease-in-out infinite;
+}
+@keyframes sweep {
+  0%, 100% { background-position: 160% 0; }
+  50% { background-position: -60% 0; }
+}
+
+@utility animate-fade-in {
+  animation: fade-in 0.3s ease-out;
+}
+@utility animate-scale-in {
+  animation: scale-in 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes scale-in {
+  from { opacity: 0; transform: scale(0.94); }
+  to { opacity: 1; transform: none; }
+}
+
+@utility pulse-ring {
+  &::before {
+    content: "";
+    position: absolute;
+    inset: -8px;
+    border-radius: inherit;
+    border: 1px solid color-mix(in oklab, var(--teal) 45%, transparent);
+    animation: pulse-ring 2.6s ease-out infinite;
+  }
+}
+@keyframes pulse-ring {
+  0% { opacity: 0.8; transform: scale(0.9); }
+  100% { opacity: 0; transform: scale(1.25); }
+}
+
+@utility scroll-hint {
+  animation: scroll-hint 1.8s ease-in-out infinite;
+}
+@keyframes scroll-hint {
+  0%, 100% { transform: translateY(0); opacity: 0.4; }
+  50% { transform: translateY(8px); opacity: 1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .aurora, .conic-glow, .shine-sweep, .float-slow, .scroll-hint { animation: none !important; }
+}
