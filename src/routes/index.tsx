@@ -210,11 +210,11 @@ function Index() {
 
       {/* 2. O que é */}
       <Slide id="o-que-e" index="01" label="O que é">
-        <Reveal>
-          <h2 className="max-w-3xl text-4xl font-semibold leading-tight md:text-6xl">
-            Não é um chat que adivinha. É uma busca que <span className="text-gradient">responde</span>.
-          </h2>
-        </Reveal>
+        <SplitText
+          text="Não é um chat que adivinha. É uma busca que responde."
+          highlightFrom={10}
+          className="max-w-3xl text-4xl font-semibold leading-tight md:text-6xl"
+        />
         <Reveal delay={120}>
           <p className="mt-8 max-w-2xl text-lg leading-relaxed text-muted-foreground">
             A cada pergunta, a Perplexity consulta a web ao vivo, lê as páginas encontradas e escreve
@@ -253,12 +253,11 @@ function Index() {
 
       {/* 3. Sobre a Perplexity */}
       <Slide id="sobre" index="02" label="Sobre a Perplexity">
-        <Reveal>
-          <h2 className="max-w-4xl text-4xl font-semibold leading-tight md:text-6xl">
-            De startup de San Francisco a{" "}
-            <span className="text-gradient">motor de respostas</span> do mundo
-          </h2>
-        </Reveal>
+        <SplitText
+          text="De startup de San Francisco a motor de respostas do mundo"
+          highlightFrom={6}
+          className="max-w-4xl text-4xl font-semibold leading-tight md:text-6xl"
+        />
         <Reveal delay={120}>
           <p className="mt-8 max-w-2xl text-lg leading-relaxed text-muted-foreground">
             A Perplexity AI foi fundada em 2022 por Aravind Srinivas, Denis Yarats, Johnny Ho e Andy
@@ -303,12 +302,11 @@ function Index() {
 
       {/* 4. Fundadores */}
       <Slide id="fundadores" index="03" label="Quem criou">
-        <Reveal>
-          <h2 className="max-w-4xl text-4xl font-semibold leading-tight md:text-6xl">
-            As quatro pessoas por trás da{" "}
-            <span className="text-gradient">Perplexity</span>
-          </h2>
-        </Reveal>
+        <SplitText
+          text="As quatro pessoas por trás da Perplexity"
+          highlightFrom={6}
+          className="max-w-4xl text-4xl font-semibold leading-tight md:text-6xl"
+        />
         <Reveal delay={100}>
           <p className="mt-6 max-w-2xl text-lg leading-relaxed text-muted-foreground">
             Um time de pesquisadores e engenheiros de IA que se conheceu entre laboratórios de ponta
@@ -347,11 +345,11 @@ function Index() {
 
       {/* 4. Recursos */}
       <Slide id="recursos" index="04" label="Principais recursos">
-        <Reveal>
-          <h2 className="max-w-3xl text-4xl font-semibold leading-tight md:text-6xl">
-            Cinco camadas de <span className="text-gradient">profundidade</span>
-          </h2>
-        </Reveal>
+        <SplitText
+          text="Cinco camadas de profundidade"
+          highlightFrom={2}
+          className="max-w-3xl text-4xl font-semibold leading-tight md:text-6xl"
+        />
         <div className="mt-14 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
           {features.map((feature, i) => (
             <Reveal key={feature.name} delay={i * 90}>
@@ -378,11 +376,11 @@ function Index() {
 
       {/* 5. Nichos */}
       <Slide id="nichos" index="05" label="Aplicações por nicho">
-        <Reveal>
-          <h2 className="max-w-3xl text-4xl font-semibold leading-tight md:text-6xl">
-            Três negócios de bairro, três usos <span className="text-gradient">concretos</span>
-          </h2>
-        </Reveal>
+        <SplitText
+          text="Três negócios de bairro, três usos concretos"
+          highlightFrom={5}
+          className="max-w-3xl text-4xl font-semibold leading-tight md:text-6xl"
+        />
         <div className="mt-14 grid gap-5 lg:grid-cols-3">
           {niches.map((niche, i) => (
             <Reveal key={niche.name} delay={i * 140}>
@@ -412,11 +410,11 @@ function Index() {
 
       {/* 6. Demonstração */}
       <Slide id="demonstracao" index="06" label="Demonstração prática">
-        <Reveal>
-          <h2 className="max-w-3xl text-4xl font-semibold leading-tight md:text-6xl">
-            Prompts testados na <span className="text-gradient">prática</span>
-          </h2>
-        </Reveal>
+        <SplitText
+          text="Prompts testados na prática"
+          highlightFrom={2}
+          className="max-w-3xl text-4xl font-semibold leading-tight md:text-6xl"
+        />
         <Reveal delay={120}>
           <p className="mt-6 max-w-2xl text-sm leading-relaxed text-muted-foreground">
             Clique em cada quadro para inserir o print da sua conversa. As legendas são editáveis:
@@ -531,9 +529,11 @@ function Index() {
         <Reveal>
           <div className="relative overflow-hidden rounded-3xl border border-destructive/40 bg-destructive/10 p-8 md:p-14">
             <AlertTriangle className="text-destructive" size={32} />
-            <h2 className="mt-6 max-w-3xl text-3xl font-semibold leading-tight md:text-5xl">
-              A citação não é garantia de verdade. Confira sempre.
-            </h2>
+            <SplitText
+              text="A citação não é garantia de verdade. Confira sempre."
+              highlightFrom={6}
+              className="mt-6 max-w-3xl text-3xl font-semibold leading-tight md:text-5xl"
+            />
             <ul className="mt-10 grid gap-6 text-sm leading-relaxed text-foreground/85 md:grid-cols-2">
               <li>
                 <strong className="font-semibold">Interpretação equivocada da fonte:</strong> a IA
@@ -565,10 +565,11 @@ function Index() {
             <Sparkles className="mx-auto text-primary" size={28} />
           </Reveal>
           <Reveal delay={140}>
-            <h2 className="mt-10 text-3xl font-semibold leading-tight md:text-6xl">
-              Se você tivesse apenas este recurso de IA e um pequeno negócio local,{" "}
-              <span className="text-gradient">como usaria essa ferramenta amanhã?</span>
-            </h2>
+            <SplitText
+              text="Se você tivesse apenas este recurso de IA e um pequeno negócio local, como usaria essa ferramenta amanhã?"
+              highlightFrom={13}
+              className="mt-10 text-3xl font-semibold leading-tight md:text-6xl"
+            />
           </Reveal>
           <Reveal delay={280}>
             <div className="mt-16 flex items-center justify-center gap-4">
